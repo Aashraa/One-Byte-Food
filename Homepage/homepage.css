@@ -1,0 +1,290 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account {
+    margin-right: 20px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.top-section {
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    
+}
+
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+.main {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.middle,
+.buttons {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.middle h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+.middle p {
+    color: #666;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.reserve-btn,
+.order-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+.reserve-btn:hover,
+.order-btn:hover {
+    background-color: #45a049;
+}
+
+.view-menu {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.view-menu h2 {
+    color: #333;
+}
+
+.menu-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.appetizers-btn img,
+.main-courses-btn img,
+.drinks-btn img,
+.dessert-btn img {
+    width: 250px;
+    height: 250px;
+}
+
+.appetizers-btn,
+.main-courses-btn,
+.drinks-btn,
+.dessert-btn {
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.appetizers-btn:hover,
+.main-courses-btn:hover,
+.drinks-btn:hover,
+.dessert-btn:hover {
+    background-color: #ddd;
+}
+
+.appetizers-btn span,
+.main-courses-btn span,
+.drinks-btn span,
+.dessert-btn span {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+@media only screen and (max-width: 600px) {
+    .menu-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .appetizers-btn, .main-courses-btn, .drinks-btn, .dessert-btn {
+        margin: 10px 0;
+    }
+}
+
+.chief-recommendation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.left-section {
+    flex: 1;
+    text-align: center;
+}
+
+.right-section img {
+    max-width: 100%;
+    height: auto;
+}
+
+.upcoming-event {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.upcoming-event h2 {
+    color: #333;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.time {
+    margin: 0 10px;
+}
+
+.time span {
+    font-size: 24px;
+    color: #333;
+}
+
+.time a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+}
+
+.event-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.event-btn:hover {
+    background-color: #45a049;
+}
+
+.onebyte {
+    color: #dc4a0b;
+}
+
+.footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+  }
+  .footer-nav {
+    list-style: none;
+    padding: 0;
+  }
+  .footer-nav li {
+    display: inline;
+    margin: 0 10px;
+  }
+  .footer-nav a {
+    text-decoration: none;
+    color: #333;
+  }
+  .footer-text {
+    margin-top: 20px;
+  }
+  .social-icons {
+    margin-top: 20px;
+  }
+  .social-icons a {
+    margin: 0 5px;
+    display: inline-block;
+  }
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+  }
+  .footer-hours {
+    margin-top: 20px;
+    font-style: italic;
+  }
+  .footer-copy {
+    margin-top: 20px;
+    font-size: 0.8em;
+  }
