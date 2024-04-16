@@ -1,46 +1,32 @@
-body {
-    font-family: Arial, sans-serif;
+
+/* Main styles *//* Reset default styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
 header {
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-.account {
-    margin-right: 20px;
-}
-
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.top-section {
-    display: flex;
-    align-items: center;
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    max-width: 100px;
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: auto;
 }
 
 nav ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
 }
 
@@ -51,240 +37,893 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
-    transform: scale(1.1);
-    
+    color: #ffcc00;
 }
 
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    padding: 10px;
+}
 
-@media only screen and (max-width: 600px) {
-    .navbar {
-        flex-direction: column;
+.dropdown li {
+    margin-bottom: 5px;
+}
+
+.has-dropdown:hover .dropdown {
+    display: block;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
     }
 
     nav ul {
+        display: none;
         flex-direction: column;
-        align-items: center;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
     }
 
     nav ul li {
         margin-right: 0;
         margin-bottom: 10px;
     }
+
+    nav ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        background-color: #444;
+    }
+
+    input[type="checkbox"]:checked ~ nav ul {
+        display: flex;
+    }
 }
 
 
 
-.main {
-    text-align: center;
-    margin-top: 50px;
+
+
+
+
+main {
+    background-image: url('new.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
 }
 
-.middle,
-.buttons {
+/* Middle section styles */
+.middle {
     text-align: center;
-    margin-top: 50px;
 }
 
 .middle h1 {
-    font-size: 36px;
-    color: #333;
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
 }
 
 .middle p {
-    color: #666;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
 }
 
+/* Highlight the first letter */
+.middle p:first-letter {
+    font-size: 2.5rem;
+    color: #cc1423; /* Highlight color */
+    margin-right: 1px; /* Adjust spacing */
+}
+
+/* Add hover effect */
+.middle p:hover {
+    color: #ff5f6d; /* Highlight color on hover */
+}
+
+/* Add emphasis to the last sentence */
+.middle p:last-child {
+    font-style: normal;
+    font-weight: bold;
+    color: #eab217ea; /* Green color */
+    text-transform: uppercase; /* Convert text to uppercase */
+}
+
+
+/* Specific color for One Byte text */
+.onebyte {
+    color: rgb(223, 180, 108); /* Change the color of One Byte text */
+}
+
+
+
+
+/* Button styles */
 .buttons {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
-.reserve-btn,
-.order-btn {
-    background-color: #4caf50;
-    color: white;
+.reserve-btn {
     padding: 10px 20px;
+    background-color: #fffefe;
+    color: #0a0a0a;
     text-decoration: none;
     border-radius: 5px;
-    margin-right: 20px;
-    font-size: 16px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; /* Ensure proper positioning for pseudo-element */
+    overflow: hidden; /* Hide overflowing content */
 }
 
-.reserve-btn:hover,
-.order-btn:hover {
-    background-color: #45a049;
+.reserve-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%; /* Initial position */
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, #9b1c13, #813600);
+    transition: left 0.3s ease; /* Smooth transition for left position */
+    z-index: -1; /* Ensure the pseudo-element is behind the button */
 }
+
+.reserve-btn:hover::before {
+    left: 0; /* Slide down and cover the button */
+}
+
+.reserve-btn:hover {
+    color: #fff; /* Change text color on hover */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Add box shadow on hover */
+    transform: scale(1.05); /* Increase button size on hover */
+}
+
+.reserve-btn:active {
+    background-position: left bottom;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Responsive styles */
+@media (min-width: 768px) {
+    .middle h1 {
+        font-size: 4.5rem;
+    }
+
+    .middle p {
+        font-size: 2rem;
+    }
+}
+
+
+
 
 .view-menu {
+    background-image: url('menu.jpg');
+    background-position: center;
+    background-size: cover;
+    padding: 100px 0;
     text-align: center;
-    margin-top: 50px;
 }
 
 .view-menu h2 {
-    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #ffffff;
 }
 
 .menu-buttons {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    gap: 20px;
 }
 
-.appetizers-btn img,
-.main-courses-btn img,
-.drinks-btn img,
-.dessert-btn img {
-    width: 250px;
-    height: 250px;
-}
-
-.appetizers-btn,
-.main-courses-btn,
-.drinks-btn,
-.dessert-btn {
-    background-color: #eee;
+.menu-buttons button {
     border: none;
-    border-radius: 5px;
-    margin: 0 10px;
+    background: none;
     cursor: pointer;
-    transition: background-color 0.3s;
+    outline: none;
 }
 
-.appetizers-btn:hover,
-.main-courses-btn:hover,
-.drinks-btn:hover,
-.dessert-btn:hover {
-    background-color: #ddd;
+.menu-buttons button img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    background-position: center;
+    background-size: cover;
+    background-image: url('menu.jpg');
+    transition: transform 0.3s ease;
 }
 
-.appetizers-btn span,
-.main-courses-btn span,
-.drinks-btn span,
-.dessert-btn span {
+.menu-buttons button span {
     display: block;
+    font-size: 1.2rem;
     margin-top: 10px;
-    color: #333;
+    color: #fff;
+    font-weight: bold;
 }
 
-@media only screen and (max-width: 600px) {
+.menu-buttons button:hover img {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
     .menu-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
     }
 
-    .appetizers-btn, .main-courses-btn, .drinks-btn, .dessert-btn {
-        margin: 10px 0;
+    .menu-buttons button {
+        width: 80%; /* Adjust button width */
+    }
+
+    .menu-buttons button img {
+        width: 250px; /* Ensure image fills the button */
+        height: 250px; /* Auto-adjust height */
+    }
+
+    .menu-buttons button span {
+        font-size: 1rem;
     }
 }
+
+
+
+
+
 
 .chief-recommendation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 50px;
-}
+    padding-bottom: 0;
+    margin-bottom: 20px;
+    background-image: url('brow.jpg');
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    background-repeat: no-repeat;}
 
+
+/* Left section styles */
 .left-section {
     flex: 1;
-    text-align: center;
+    margin-right: 50px;
+}
+
+.left-section h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.left-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ffd8d8;
+    margin-bottom: 20px;
+}
+
+.left-section .details-btn {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold; /* Change font weight to bold */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Ensure proper stacking context */
+    overflow: hidden; /* Hide overflow content */
+}
+
+
+.left-section .details-btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%; /* Start from right */
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind the button */
+    transition: transform 0.3s ease;
+}
+
+.left-section .details-btn:hover:before {
+    transform: translateX(-100%); /* Slide from right to left */
+}
+
+.left-section .details-btn:hover {
+    transform: scale(1.1); /* Zoom in effect */
+    box-shadow: 0 2px 0 0 #b94329; /* Box shadow for sliding effect */
+}
+
+
+
+/* Recommendation details styles */
+.recommendation-details {
+    display: none;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent background */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3); /* Drop shadow for depth */
+}
+
+.recommendation-details.show-details {
+    display: block;
+}
+
+.recommendation-details p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.7; /* Improved line height for readability */
+}
+
+.recommendation-details p:first-of-type {
+    margin-top: 0; /* Remove margin from first paragraph */
+}
+
+.recommendation-details h4 {
+    font-size: 1.5rem; /* Slightly larger heading */
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.recommendation-details ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    column-count: 2; /* Add columns for easier reading */
+    column-gap: 40px;
+}
+
+.recommendation-details ul li {
+    font-size: 1.1rem;
+    color: #777;
+    margin-bottom: 15px; /* Add some spacing between list items */
+}
+
+.recommendation-details ul li::marker { /* Remove bullet points */
+    content: "";
+}
+
+/* Add some animation for when the details appear */
+.recommendation-details.show-details {
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Right section styles */
+.right-section {
+    flex: 1;
+    position: relative;
 }
 
 .right-section img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+    filter: grayscale(100%); /* Make image grayscale */
+    transition: 
+        transform 0.3s ease, /* Smooth image transformation */
+        filter 0.3s ease; /* Smooth image grayscale transition */
 }
+
+.right-section img:hover {
+    filter: grayscale(0); /* Remove grayscale on hover */
+    transform: scale(1.05); /* Enlarge image on hover */
+}
+
+.right-section figcaption {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+
+
+.about-us {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 50px;
+    margin-bottom: 0;
+    margin-top: -20px;
+    padding-top: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    background-image: url('dark1.jpg'); /* Specify your background image URL */
+    background-size: cover; /* Cover the entire area */
+    background-repeat: no-repeat; /* Repeat only if needed */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Fix the background image */
+}
+
+
+.about-us-img {
+    flex: 1;
+    margin-right: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-us-img img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.about-us-img:hover img {
+    transform: scale(1.05);
+}
+
+.description {
+    flex: 1;
+    color: #f4dddd;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.about-us:hover .description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.description h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.description p {
+    margin-bottom: 30px;
+}
+
+.description h3 {
+    font-size: 1.8rem;
+    margin-top: 30px;
+}
+
+.description ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.description li {
+    margin-bottom: 15px;
+}
+
+.about-us-img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.about-us-img:hover::before {
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.about-us .description {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+.contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 0;
+    padding: 50px 0;
+    background-color: #211e1e;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info {
+    flex: 1;
+    margin-right: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #383636;
+}
+
+.contact-info h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #b0aeae;
+    margin-bottom: 20px;
+}
+
+.contact-info p::before {
+    content: "📢 ";
+    font-size: 1.2rem;
+    color: #838ca0;
+}
+
+.contact-info p {
+    font-weight: 600;
+    color: #f1f1f1;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-info li {
+    font-size: 1.2rem;
+    color: #ccc8c8;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.contact-info li a {
+    text-decoration: none;
+    color: #b8b4b4;
+    transition: color 0.3s ease;
+}
+
+.contact-info li a:hover {
+    color: #c7c4c4;
+}
+
+.contact-form {
+    flex: 1;
+}
+
+.contact-form h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #cccaca;
+    margin-bottom: 20px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.contact-form label {
+    font-size: 1.2rem;
+    color: #adaaaa;
+    margin-bottom: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form input[type="submit"] {
+    padding: 15px 40px;
+    background-color: #ff5f6d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form input[type="submit"]:hover {
+    background-color: #e04b5a;
+}
+
+.contact-form input[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #000000;
+}
+
+@media (max-width: 768px) {
+    .contact {
+        flex-direction: column;
+    }
+
+    .contact-info {
+        margin-right: 0;
+    }
+}
+
+
+
+
+
+
+
 
 .upcoming-event {
     text-align: center;
-    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-bottom: 0;
+    animation: upcoming-event-anim 1s forwards;
+    background-color: #cfcfcf; /* Light background color */
+    padding: 30px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+@keyframes upcoming-event-anim {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .upcoming-event h2 {
-    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333; /* Darker text color */
+}
+
+.upcoming-event p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #666; /* Slightly darker text color */
 }
 
 .countdown {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .time {
     margin: 0 10px;
+    border-radius: 5px; /* Rounded corners for each time block */
+    background-color: #ece0d4; /* Light gray background color */
+    padding: 10px 20px; /* Add padding for spacing */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
 }
 
 .time span {
-    font-size: 24px;
-    color: #333;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333; /* Darker text color */
 }
 
-.time a {
+.time-btn {
     text-decoration: none;
-    color: #666;
-    font-size: 14px;
-    display: block;
-    margin-top: 5px;
+    font-size: 1rem;
+    color: #555; /* Slightly darker text color */
+    transition: color 0.3s ease; /* Add transition effect */
+}
+
+.time-btn:hover {
+    color: #777; /* Darker color on hover */
 }
 
 .event-btn {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
+    padding: 15px 30px;
+    background-color: #000000; /* Primary button color */
+    color: #fff;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 20px;
-    font-size: 16px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.2s ease-out;
+    position: relative; /* Required for absolute positioning */
+    overflow: hidden; /* Hide overflowing animation */
+}
+
+.event-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.event-btn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .event-btn:hover {
-    background-color: #45a049;
+    background-color: #201d1d; /* Darker color on hover */
+    color: #fff;
 }
 
-.onebyte {
-    color: #dc4a0b;
+.event-btn:active {
+    transform: scale(0.95); /* Add slight scale effect on button click */
 }
+
+
+
 
 .footer {
-    background-color: #f2f2f2;
+    background-color: #333;
+    color: #fff;
+    padding-top: 0;
     padding: 20px;
     text-align: center;
-  }
-  .footer-nav {
-    list-style: none;
+    border-top: 2px solid #fff; /* Add a border on top for separation */
+}
+
+.footer-nav {
+    list-style-type: none;
     padding: 0;
-  }
-  .footer-nav li {
-    display: inline;
-    margin: 0 10px;
-  }
-  .footer-nav a {
-    text-decoration: none;
-    color: #333;
-  }
-  .footer-text {
-    margin-top: 20px;
-  }
-  .social-icons {
-    margin-top: 20px;
-  }
-  .social-icons a {
-    margin: 0 5px;
+    margin-bottom: 20px; /* Add space below the navigation */
+}
+
+.footer-nav li {
     display: inline-block;
-  }
-  .social-icons img {
-    width: 24px;
-    height: 24px;
-  }
-  .footer-hours {
+    margin-right: 20px;
+}
+
+.footer-nav li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.footer-nav li a:hover {
+    color: #e04b5a; /* Highlight color on hover */
+}
+
+.footer-text {
     margin-top: 20px;
-    font-style: italic;
-  }
-  .footer-copy {
+    font-size: 1.2rem;
+    line-height: 1.5; /* Increase line height for better readability */
+}
+
+.footer-hours {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-style: italic; /* Italicize the text */
+}
+
+.social-icons {
     margin-top: 20px;
-    font-size: 0.8em;
-  }
+}
+
+.social-icons img {
+    width: 30px; /* Adjust the width of the icons */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+.social-icons a:hover {
+    transform: translateY(-3px); /* Move icons up slightly on hover */
+}
+
+.footer-copy {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    opacity: 0.8; /* Reduce opacity for subtle effect */
+}
+
+.footer-copy a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s ease; /* Smooth transition on hover */
+}
+
+.footer-copy a:hover {
+    opacity: 1; /* Full opacity on hover */
+}
+
+
+
+
+
