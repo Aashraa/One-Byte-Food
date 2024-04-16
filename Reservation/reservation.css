@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+/* Reset */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(rgba(0, 18, 50, 0.84), rgba(0, 0, 0, 0.95)), url("./lloyd-dirks-4SLz_RCk6kQ-unsplash.jpg") bottom;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 25px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23777' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='0 0 20 0 10 10'%3E%3C/polygon%3E%3C/svg%3E");
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+}
+
+.showcase {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.showcase li {
+    display: flex;
+    align-items: center;
+}
+
+.showcase li small {
+    margin-left: 5px;
+}
+
+
+
+.movie-container {
+    margin: 20px 0;
+}
+
+.movie-container select {
+    background-color: #fff;
+    font-family: 'Lato',
+        sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+    margin-left: 10px;
+    padding: 5px 15px 5px 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Will remove the browser style and let you use your own style */
+}
+
+
+.container {
+    /*  it simply enables a 3D-space for children elements. */
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-container {
+    margin-top: 30px;
+}
+
+
+.seat {
+    position: relative; /* Add position relative */
+    background-color: #0c0c0e;
+    height: 30px;
+    width: 35px;
+    margin: 5px;
+    border: 2px solid #16233d;
+    border-radius: 10px;
+    transition: all .2s ease;
+}
+
+/* Add this CSS to display seat numbers */
+.seat::before {
+    content: attr(data-number); /* Display the value of data-number attribute */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px; /* Adjust font size as needed */
+    color: #fff; /* Text color */
+}
+
+.seat.selected {
+    background-color: #fc6a45;
+}
+
+.seat.occupied {
+    background-color: #bd0000;
+}
+
+.seat:not(.occupied):hover {
+    /* Selecting seats that do not have "occupied" class */
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.showcase .seat:not(.occupied):hover {
+    cursor: default;
+    transform: scale(1);
+}
+
+
+.seat.selected {
+    background-color: #da3e0e;
+    background-color: #fcc245;
+}
+
+.seat.occupied {
+    background-color: #bd0000;
+}
+
+.seat:nth-of-type(2) {
+    margin-right: 18px;
+}
+
+.seat:nth-last-of-type(2) {
+    margin-left: 18px;
+}
+
+.seat:not(.occupied):hover {
+    /* Selecting seats that do not have "occupied" class */
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.showcase .seat:not(.occupied):hover {
+    cursor: default;
+    transform: scale(1);
+}
+
+.showcase {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #777;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.showcase li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.showcase li small {
+    margin-left: 2px;
+}
+
+.row {
+    display: flex;
+}
+
+.screen {
+    background-color: #fff;
+    height: 70px;
+    width: 100%;
+    margin: 15px 0;
+    transform: rotateX(-45deg);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, .7);
+}
+
+p.text {
+    margin: 5px 0;
+}
+
+p.text span {
+    color: #6feaf5;
+}
+
+.movie-screen {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.movie-screen img {
+    max-width: 85%;
+}
+
+.subtitle {
+    position: relative;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 10px;
+    color: #f7e2e7;
+    font-size: 16px;
+    max-width: 270px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subtitle:before,
+.subtitle:after {
+    position: absolute;
+    content: '';
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    height: 1px;
+    background: #213a69;
+}
+
+.subtitle:before {
+    width: 80%;
+    top: 0;
+}
+
+.subtitle:after {
+    width: 100%;
+    bottom: 0;
+}
+
+.text {
+    font-size: 18px;
+}
+
+#count,
+#total {
+    font-size: 24px;
+    padding: 0 8px;
+}
+
+.text-wrapper {
+    margin-top: 10px;
+}
+
+@media (max-width: 576px) {
+
+    body {
+        padding-top: 30px;
+    }
+
+    .movie-container select {
+        font-size: 14px;
+    }
+
+    .seat {
+        height: 21px;
+        width: 23px;
+    }
+
+    .movie-screen img {
+        max-width: 92%;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        padding: 7px;
+    }
+
+    .seat:nth-of-type(2) {
+        margin-right: 12px;
+    }
+
+    .seat:nth-last-of-type(2) {
+        margin-left: 12px;
+    }
+
+    .movie-screen {
+        margin-top: 25px;
+        margin-bottom: 20px;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+
+    #count,
+    #total {
+        font-size: 18px
+    }
+}
+
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #444;
+}

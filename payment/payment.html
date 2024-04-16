@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <div class="container">
+        <h6>Checkout</h6>
+        <span>x</span>
+        <h1>Payment Method</h1>
+        <form action="/">
+        <label for="country">Country
+        <select name="country" id="country">
+        <option value="germany">germany</option>
+        <option value="england">england</option>
+        <option value="india">india</option>
+        <option value="australia">australia</option>
+        <option value="nigeria">nigeria</option>
+        <option value="canada">canada</option>
+        <option value="france">france</option>
+        <option value="spain">spain</option>
+        <option value="japan">japan</option>
+        <option value="brazil">brazil</option>
+        <option value="italy">italy</option>
+        <option value="mexico">mexico</option>
+        <option value="china">china</option>
+        <option value="malaysia">malaysia</option>
+        <option value="argentina">argentina</option>
+        <option value="newzealand">new zealand</option>
+        
+        </select>
+        </label>
+        <label for="cardno">Card Number
+        <input type="text" name="cardno" id="cardno" maxlength="19" onkeypress="cardspace()" />
+        </label>
+        <div class="float">
+        <label for="validtill">Valid till
+        <input type="text" name="validtill" id="validtill" maxlength="7" onkeypress="addSlashes()" />
+        </label>
+        <label for="cvv">Cvv
+        <input type="text" name="cvv" id="cvv" maxlength="3" />
+        </label>
+        </div>
+        <label for="checkbox">
+        <input type="checkbox" name="checkbox" id="checkbox" />
+        <p>Payment Address is the same as the Delivery Address</p>
+        </label>
+        <button>Pay 89.00 $</button>
+        </form>
+        </div>
+        <script src="payment.js"></script>
+</body>
+</html>
