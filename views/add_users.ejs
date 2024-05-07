@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Byte Food - Table Reservation</title>
+    <link rel="stylesheet" href="/public/add_users.css">
+</head>
+<body>
+    <header>
+        <h1>Add User</h1>
+    </header>
+    <nav>
+        <a href="/index.ejs" class="back-button">Back</a>
+    </nav>
+    <div class="container">
+        <form action="/add" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            <label for="tableNo">Table Number:</label>
+            <input type="number" id="tableNo" name="tableNumber" required>
+
+            
+            <input type="submit" name="submit" value="Add User">
+        </form>
+    </div>
+        
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </div>
+</body>
+</html>
+</html>
+

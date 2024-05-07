@@ -1,12 +1,14 @@
+/* Import Google Font */
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-/* Reset */
 
+/* Reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Body Styles */
 body {
     font-family: 'Lato', sans-serif;
     background: linear-gradient(rgba(0, 18, 50, 0.84), rgba(0, 0, 0, 0.95)), url("./lloyd-dirks-4SLz_RCk6kQ-unsplash.jpg") bottom;
@@ -19,23 +21,7 @@ body {
     padding-top: 25px;
 }
 
-.back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer; /* Add cursor pointer for better UX */
-}
-
-.back-button:hover {
-    background-color: #555;
-}
-
+/* Header Styles */
 header {
     background-color: #333;
     color: #fff;
@@ -43,21 +29,62 @@ header {
     text-align: center;
 }
 
+/* Navigation Styles */
+nav {
+    margin-bottom: 20px;
+}
+
+.back-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #555;
+}
+
+/* Container Styles */
 .container {
-    max-width: 600px;
-    margin: 20px;
+    width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+    flex: 1;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
+.left-section {
+    margin-right: 20px;
+}
+
+.right-section {
+    margin-left: 20px;
+}
+
+/* Form Styles */
 form {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-    display: block;
     margin-bottom: 5px;
 }
 
@@ -65,24 +92,15 @@ input[type="text"],
 input[type="email"],
 input[type="date"],
 input[type="time"],
-input[type="number"],
 select {
-    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
+    font-family: 'Lato', sans-serif;
 }
 
-select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23777' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='0 0 20 0 10 10'%3E%3C/polygon%3E%3C/svg%3E");
-    background-position: right 10px center;
-    background-repeat: no-repeat;
-}
-
+/* Showcase Styles */
 .showcase {
     list-style: none;
     display: flex;
@@ -93,183 +111,28 @@ select {
 .showcase li {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .showcase li small {
     margin-left: 5px;
 }
 
-
-
-.movie-container {
-    margin: 20px 0;
-}
-
-.movie-container select {
-    background-color: #fff;
-    font-family: 'Lato',
-        sans-serif;
-    border: 0;
-    border-radius: 5px;
-    font-size: 18px;
-    outline: none;
-    margin-left: 10px;
-    padding: 5px 15px 5px 15px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    /* Will remove the browser style and let you use your own style */
-}
-
-
-.container {
-    /*  it simply enables a 3D-space for children elements. */
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.row-container {
-    margin-top: 30px;
-}
-
-
-.seat {
-    position: relative; /* Add position relative */
-    background-color: #0c0c0e;
-    height: 30px;
-    width: 35px;
-    margin: 5px;
-    border: 2px solid #16233d;
-    border-radius: 10px;
-    transition: all .2s ease;
-}
-
-/* Add this CSS to display seat numbers */
-.seat::before {
-    content: attr(data-number); /* Display the value of data-number attribute */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px; /* Adjust font size as needed */
-    color: #fff; /* Text color */
-}
-
-.seat.selected {
-    background-color: #fc6a45;
-}
-
-.seat.occupied {
-    background-color: #bd0000;
-}
-
-.seat:not(.occupied):hover {
-    /* Selecting seats that do not have "occupied" class */
-    cursor: pointer;
-    transform: scale(1.2);
-}
-
-.showcase .seat:not(.occupied):hover {
-    cursor: default;
-    transform: scale(1);
-}
-
-
-.seat.selected {
-    background-color: #da3e0e;
-    background-color: #fcc245;
-}
-
-.seat.occupied {
-    background-color: #bd0000;
-}
-
-.seat:nth-of-type(2) {
-    margin-right: 18px;
-}
-
-.seat:nth-last-of-type(2) {
-    margin-left: 18px;
-}
-
-.seat:not(.occupied):hover {
-    /* Selecting seats that do not have "occupied" class */
-    cursor: pointer;
-    transform: scale(1.2);
-}
-
-.showcase .seat:not(.occupied):hover {
-    cursor: default;
-    transform: scale(1);
-}
-
-.showcase {
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: #777;
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-}
-
-.showcase li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 10px;
-}
-
-.showcase li small {
-    margin-left: 2px;
-}
-
-.row {
-    display: flex;
-}
-
-.screen {
-    background-color: #fff;
-    height: 70px;
-    width: 100%;
-    margin: 15px 0;
-    transform: rotateX(-45deg);
-    box-shadow: 0 3px 10px rgba(255, 255, 255, .7);
-}
-
-p.text {
-    margin: 5px 0;
-}
-
-p.text span {
-    color: #6feaf5;
-}
-
-.movie-screen {
-    margin-top: 35px;
-    margin-bottom: 35px;
-    text-align: center;
-}
-
-.movie-screen img {
-    max-width: 85%;
+/* Seating Styles */
+.section {
+    margin-bottom: 20px;
 }
 
 .subtitle {
-    position: relative;
-    text-align: center;
     font-weight: 600;
     text-transform: uppercase;
-    padding: 10px;
     color: #f7e2e7;
     font-size: 16px;
+    padding: 10px;
     max-width: 270px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
 .subtitle:before,
@@ -277,7 +140,6 @@ p.text span {
     position: absolute;
     content: '';
     left: 50%;
-    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     height: 1px;
     background: #213a69;
@@ -293,6 +155,57 @@ p.text span {
     bottom: 0;
 }
 
+.row {
+    display: flex;
+}
+
+.seat {
+    background-color: #0c0c0e;
+    height: 30px;
+    width: 35px;
+    margin: 5px;
+    border: 2px solid #16233d; 
+    border-radius: 10px;
+    position: relative;
+    transition: all .2s ease;
+}
+
+.right-section .seat:nth-child(2n) {
+    margin-left: 50px;
+}
+
+.seat::before {
+    content: attr(data-number);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: #fff;
+}
+
+.seat.selected {
+    background-color: #fc6a45;
+}
+
+.seat.occupied {
+    background-color: #bd0000;
+}
+
+.seat:not(.occupied):hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.showcase .seat:not(.occupied):hover {
+    cursor: default;
+    transform: scale(1);
+}
+
+.text-wrapper {
+    margin-top: 10px;
+}
+
 .text {
     font-size: 18px;
 }
@@ -303,27 +216,32 @@ p.text span {
     padding: 0 8px;
 }
 
-.text-wrapper {
-    margin-top: 10px;
-}
-
+/* Responsive Styles */
 @media (max-width: 576px) {
-
     body {
         padding-top: 30px;
     }
 
-    .movie-container select {
-        font-size: 14px;
+    .left-section,
+    .right-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    form,
+    .table-container,
+    .showcase,
+    .seating-container {
+        width: 100%;
     }
 
     .seat {
         height: 21px;
         width: 23px;
-    }
-
-    .movie-screen img {
-        max-width: 92%;
     }
 
     .subtitle {
@@ -339,23 +257,18 @@ p.text span {
         margin-left: 12px;
     }
 
-    .movie-screen {
-        margin-top: 25px;
-        margin-bottom: 20px;
-    }
-
     .text {
         font-size: 14px;
     }
 
     #count,
     #total {
-        font-size: 18px
+        font-size: 18px;
     }
 }
 
-
-input[type="submit"] {
+/* Button Styles */
+input[type="button"] {
     width: 100%;
     padding: 10px;
     border: none;
@@ -364,8 +277,9 @@ input[type="submit"] {
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 20px;
 }
 
-input[type="submit"]:hover {
+input[type="button"]:hover {
     background-color: #444;
 }
