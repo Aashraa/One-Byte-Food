@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Dining System - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-Ak/fIMwOKi1qgm5V7qdVknNRwzNfXrYDrg+UIqf0dlc+0s7PH0REw+ETBP1q2M2lGziiwZl1fbmqHXfT5C0x1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+      <header>
+        <div class="logo">OneByte</div>
+        <input type="checkbox" id="nav_check" hidden>
+        <nav>
+            <ul>
+                <li>
+                    <a href="../menu/menu.html">Menu</a>
+                </li>
+                <li>
+                    <a href="#about-us" class="scroll-to">About Us</a>
+                </li>
+                <li>
+                    <a href="#contact-us" class="scroll-to">Contact</a>
+                </li>
+                <li class="has-dropdown">
+                    <input type="checkbox" id="dropdown_check" hidden>
+                    <label for="dropdown_check">Account</label>
+                    <span id="user-name"></span>
+                    <ul class="dropdown">
+                        <li><a href="../userdetail/userdetail.html">Profile</a></li>
+                        <li><a href="../userdetail/userdetail.html">Settings</a></li>
+                        <li><a href="../reservation/reservation.html">Reservation</a></li>
+                        <li><a href="#" style="color: red;">Logout</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/signup/signup.html">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+        <label for="nav_check" class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </label>
+    </header>
+    
+    
+      
+      
+
+    <main>
+        <section class="middle">
+            <h1>Welcome to <span class="onebyte">One Byte</span> Food</h1>
+            <p>Delicious Bites in Every Byte</p>
+        </section>
+        <section class="buttons">
+            <a href="../reservation/reservation.html" class="reserve-btn">Reserve Table</a>
+        </section>
+    </main>
+
+
+    <section class="view-menu">
+        <h2>View Our Menu</h2>
+        <div class="menu-buttons">
+            <button class="appetizers-btn"><img src="images/appe.jpg" alt="Appetizers"><br><span>Appetizers</span></button>
+            <button class="main-courses-btn"><img src="images/main.jpg" alt="Main Courses"><br><span>Main Courses</span></button>
+            <button class="drinks-btn"><img src="images/drinks.jpg" alt="Drinks"><br><span>Drinks</span></button>
+            <button class="dessert-btn"><img src="images/dessert.jpeg" alt="Dessert"><br><span>Dessert</span></button>
+        </div>
+    </section>
+    
+    <section class="chief-recommendation">
+        <article class="left-section">
+            <h3>Our Chef Recommendation:</h3>
+            <p>The most delicious and mouth-watering dish we have. It's a MUST TRY!</p>
+            <button class="details-btn">See Details</button>
+            <div class="recommendation-details">
+                <p>This dish is made with fresh ingredients sourced locally, seasoned to perfection, and cooked to bring out the best flavors. It's a perfect blend of taste and texture that will leave you wanting more. Served with a side of our homemade sauce, it's a culinary delight you won't forget!</p>
+                <h4>Chef's Notes:</h4>
+                <p>Our chef recommends pairing this dish with a glass of red wine to enhance the flavors.</p>
+                <h4>Reviews:</h4>
+                <ul>
+                    <li>"Absolutely delicious! 5 stars!" - Jane D.</li>
+                    <li>"One of the best dishes I've ever tasted!" - John S.</li>
+                </ul>
+                <h4>Nutritional Information:</h4>
+                <ul>
+                    <li>Calories: 350</li>
+                    <li>Protein: 25g</li>
+                    <li>Carbohydrates: 30g</li>
+                    <li>Fat: 15g</li>
+                </ul>
+            </div>
+        </article>
+        <figure class="right-section">
+            <img src="images/bg1.jpg" alt="Chief Recommendation">
+            <figcaption>Strawberry mint</figcaption>
+        </figure>
+    </section>
+    
+
+    <section class="about-us" id="about-us">
+        <div class="about-us-img">
+            <img src="images/we.jpg" alt="One Byte Food">
+        </div>
+        <div class="description">
+            <h2>Our Story</h2>
+            <p>Welcome to One Byte Food! We're a food destination with a focus on delicious, locally sourced ingredients and a warm, welcoming atmosphere. Our mission is to create memorable dining experiences.</p>
+            <h3>Our Commitment</h3>
+            <p>At One Byte Food, we are committed to:</p>
+            <ul>
+                <li>Using locally sourced, sustainable ingredients</li>
+                <li>Providing exceptional customer service</li>
+                <li>Creating memorable dining experiences</li>
+                <li>Supporting the local community</li>
+            </ul>
+            <h3>Our Team</h3>
+            <p>Meet the passionate individuals behind One Byte Food:</p>
+            <ul>
+                <li>Chef John Doe - Head Chef</li>
+                <li>Emily Smith - Restaurant Manager</li>
+                <li>David Lee - Sous Chef</li>
+                <li>Sarah Johnson - Head Waiter</li>
+            </ul>
+        </div>
+    </section>
+    
+
+
+    <section id="contact-us" class="contact">
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>Feel free to reach out to us for any inquiries or feedback. Our team is here to assist you.</p>
+            <ul>
+                <li><i class="fas fa-envelope"></i><span class="highlight">Email:</span> info@onebytefood.com</li>
+                <li><i class="fas fa-phone"></i> +1-123-456-7890</li>
+                <li><i class="fas fa-map-marker-alt"></i> 123 Main Street, City, Country</li>
+            </ul>
+        </div>
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="ceaf43fb-7e94-4f30-9e0c-b3b3783477b3">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="tel" name="phone" placeholder="Your Phone Number">
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+    
+
+    <section class="upcoming-event">
+        <h2>Upcoming Event</h2>
+        <p>We are excited to announce our next event, coming up in</p>
+        <div class="countdown">
+            <div class="time">
+                <span class="days special-day">25</span>
+                <a href="#" class="day-btn">Days</a>
+            </div>
+            <div class="time">
+                <span class="hours special-hour">4</span>
+                <a href="#" class="hour-btn">Hours</a>
+            </div>
+            <div class="time">
+                <span class="minutes special-minute">3</span>
+                <a href="#" class="minute-btn">Minutes</a>
+            </div>
+            <div class="time">
+                <span class="seconds special-second">2</span>
+                <a href="#" class="second-btn">Seconds</a>
+            </div>
+        </div>
+        <p>Join us for a night of great food, drinks, and fun!</p>
+        <a href="#" class="event-btn">Reserve Now</a>
+    </section>
+
+
+    <div class="footer">
+        <footer>
+            <nav class="footer-nav">
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">About US</a></li>
+                <li><a href="#">Reservation</a></li>
+                <li><a href="#">Order</a></li>
+                <li><a href="#">Contact us</a></li>
+            </nav>
+            <div class="footer-text">
+                We offer a variety of delicious dishes made with fresh ingredients and bold flavors.
+            </div>
+            <div class="footer-hours">
+                SUNDAY - THURSDAY: 11:30AM - 11PM | FRIDAY & SATURDAY: 11:30AM - 12AM
+            </div>
+            <div class="social-icons">
+                <a href="#"><img src="images/fb.png" alt="Facebook"></a>
+                <a href="#"><img src="images/inst.png" alt="Instagram"></a>
+            </div>
+            <div class="footer-copy">
+                © 2023 One Byte Food. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    
+
+
+<script src="homepage.js"></script>
+</body>
+</html>
