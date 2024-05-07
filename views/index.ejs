@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .text-secondary {
+            color: #6c757d;
+        }
+
+        .mt-5 {
+            margin-top: 5rem;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover, .btn-danger:hover {
+            background-color: #0056b3;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .search-bar {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 250px;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+   
+    <h1>Customer Table</h1>
+    <a href="/add" class="btn btn-primary">Add User</a>
+    
+        <div class="container">
+            <div class="table-responsive">
+                <% if(users !='') { %>
+                <table class="table table-striped text-center" id="user-table">
+                    <thead>
+                        <tr class="align-middle">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Table Number</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <% users.forEach((row, index) => { %>
+                            <tr>
+                                <td><%= index %></td>
+                                <td><%= row.name %></td>
+                                <td><%= row.email %></td>
+                                <td><%= row.date %></td>
+                                <td><%= row.time %></td>
+                                <td><%= row.tableNumber %></td>
+                                <td>
+                                    <!-- Edit button -->
+                                    <a href="/edit/<%= row._id %>" class="btn btn-primary">Edit</a>
+                                    <!-- Delete button -->
+                                    <a href="/delete/<%= row._id %>" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                   <h1 class="text-center text-secondary mt-5">No users found in the database</h1>
+                <% } %>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#user-table').DataTable({
+                    order: [0, "desc"] // Sort table in descending order
+                });
+            });
+        </script>
+</body>
+</html>

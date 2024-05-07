@@ -1,14 +1,25 @@
 {
+<<<<<<< HEAD
   "name": "collab",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+=======
+  "name": "node-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+>>>>>>> 10df3536f0a88c8b5c6aa9283df2338107b5a72d
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
@@ -16,5 +27,19 @@
     "nodemon": "^3.1.0",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5"
+=======
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.3.3",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+>>>>>>> 10df3536f0a88c8b5c6aa9283df2338107b5a72d
   }
 }

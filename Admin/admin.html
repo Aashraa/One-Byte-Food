@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="admin.css">
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-right">
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <img src="https://www.seattleschools.org/wp-content/uploads/2018/11/logo-ssc-white-200x57.png" alt="Seattle Schools logo" />
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+        
+          <li class="sidebar-list-item">
+            <a href="customer.html" target="_blank">
+              <span class="material-icons-outlined">groups</span> Customers Details
+            </a>
+          </li>
+    
+          <li class="sidebar-list-item">
+            <a href="../Reservation1/reservation.html" target="_blank">
+              <span class="material-icons-outlined">notification_important</span> Reservations
+            </a>
+          </li>
+
+          <li class="sidebar-list-item">
+            <a href="../User/userdetail.html" target="_blank">
+              <span class="material-icons-outlined">person</span> Setting
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <h2>DASHBOARD</h2>
+        </div>
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>Available Table</h3>
+              <span class="material-icons-outlined">inventory_2</span>
+            </div>
+            <h1>20</h1>
+          </div>
+
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>CUSTOMERS</h3>
+              <span class="material-icons-outlined">groups</span>
+            </div>
+            <h1>10</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>RESERVATIONS</h3>
+              <span class="material-icons-outlined">notification_important</span>
+            </div>
+            <h1>56</h1>
+          </div>
+
+        </div>
+
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
