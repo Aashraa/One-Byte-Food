@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Byte Food - Table Reservation</title>
+    <link rel="stylesheet" href="reservation.css">
+</head>
+<body>
+    <header>
+        <h1>One Byte Food - Table Reservation</h1>
+    </header>
+    <nav>
+        <a class="back-button">Back</a>
+    </nav>
+    <div class="container">
+        <!-- Left section -->
+        <div class="left-section">
+            <form action="/reserve_table" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+            </form>
+        </div>
+        
+        <!-- Right section -->
+        <div class="right-section">
+
+            <ul class="showcase">
+                <li>
+                    <div class="seat"></div>
+                    <small>Available</small>
+                </li>
+                <li>
+                    <div class="seat selected"></div>
+                    <small>Selected</small>
+                </li>
+                <li>
+                    <div class="seat occupied"></div>
+                    <small>Occupied</small>
+                </li>
+            </ul>
+
+            <!-- Seating section -->
+            <div class="seating-container">
+                <!-- Table sections -->
+                <div class="section">
+                    <h2 class="subtitle">For 2 to 4 Guests</h2>
+                    <p class="price">Price: 599$ </p>
+                    <div class="row">
+                        <div class="seat" data-number="1"></div>
+                        <div class="seat" data-number="2"></div>
+                        <div class="seat" data-number="3"></div>
+                        <div class="seat" data-number="4"></div>
+                        <div class="seat" data-number="5"></div>
+                        <div class="seat" data-number="6"></div>
+                        <div class="seat" data-number="7"></div>
+                        <div class="seat" data-number="8"></div>
+                    </div>
+                    <div class="row">
+                        <div class="seat" data-number="9"></div>
+                        <div class="seat" data-number="10"></div>
+                        <div class="seat" data-number="11"></div>
+                        <div class="seat" data-number="12"></div>
+                        <div class="seat" data-number="13"></div>
+                        <div class="seat" data-number="14"></div>
+                        <div class="seat" data-number="15"></div>
+                        <div class="seat" data-number="16"></div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="subtitle">For 5 to 8 Guests</h3>
+                    <p class="price">Price: 899$ </p>
+                    <div class="row">
+                        <div class="seat" data-number="17"></div>
+                        <div class="seat" data-number="18"></div>
+                        <div class="seat" data-number="19"></div>
+                        <div class="seat" data-number="20"></div>
+                        <div class="seat" data-number="21"></div>
+                        <div class="seat" data-number="22"></div>
+                        <div class="seat" data-number="23"></div>
+                        <div class="seat" data-number="24"></div>
+                    </div>
+                    <div class="row">
+                        <div class="seat" data-number="25"></div>
+                        <div class="seat" data-number="26"></div>
+                        <div class="seat" data-number="27"></div>
+                        <div class="seat" data-number="28"></div>
+                        <div class="seat" data-number="29"></div>
+                        <div class="seat" data-number="30"></div>
+                        <div class="seat" data-number="31"></div>
+                        <div class="seat" data-number="32"></div>
+                    </div>
+                    <div class="row">
+                        <div class="seat" data-number="33"></div>
+                        <div class="seat" data-number="34"></div>
+                        <div class="seat" data-number="35"></div>
+                        <div class="seat" data-number="36"></div>
+                        <div class="seat" data-number="37"></div>
+                        <div class="seat" data-number="38"></div>
+                        <div class="seat" data-number="39"></div>
+                        <div class="seat" data-number="40"></div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h4 class="subtitle">For 9 to 12 Guests</h4>
+                    <p class="price">Price: 1199$</p>
+                    <div class="row">
+                        <div class="seat" data-number="41"></div>
+                        <div class="seat" data-number="42"></div>
+                        <div class="seat" data-number="43"></div>
+                        <div class="seat" data-number="44"></div>
+                        <div class="seat" data-number="45"></div>
+                        <div class="seat" data-number="46"></div>
+                        <div class="seat" data-number="47"></div>
+                        <div class="seat" data-number="48"></div>
+                    </div>
+                    <div class="row">
+                        <div class="seat" data-number="49"></div>
+                        <div class="seat" data-number="50"></div>
+                        <div class="seat" data-number="51"></div>
+                        <div class="seat" data-number="52"></div>
+                        <div class="seat" data-number="53"></div>
+                        <div class="seat" data-number="54"></div>
+                        <div class="seat" data-number="55"></div>
+                        <div class="seat" data-number="56"></div>
+                    </div>
+                </div>
+
+                <!-- Additional sections for different group sizes if needed -->
+
+                <div class="text-wrapper">
+                    <p class="text">Selected Table: <span id="count1">0</span></p>
+                    <p class="text">Total Price $: <span id="total1">0</span></p>
+                </div>
+            </div>
+
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button id="reserve-button">Reserve Table</button>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="reservation.js"></script>
+</body>
+</html>

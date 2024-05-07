@@ -1,0 +1,97 @@
+/* Body Styles */
+body {
+    background: #e0e0e0 !important; /* Set background color */
+    margin-top: 20px; /* Add margin to the top */
+}
+
+/* Image Styles */
+.ui-w-80 {
+    width: 80px !important; /* Set width of images */
+    height: auto; /* Automatically adjust height */
+}
+
+/* Button Styles */
+.btn-default {
+    border-color: rgba(24, 28, 33, 0.1); /* Set border color */
+    background: rgba(0, 0, 0, 0); /* Set background color */
+    color: #bfd2ec; /* Set text color */
+}
+
+/* Label Button Styles */
+label.btn {
+    margin-bottom: 0; /* Remove bottom margin for label buttons */
+}
+
+/* Outline Primary Button Styles */
+.btn-outline-primary {
+    border-color: #6b0351; /* Set border color */
+    background: transparent; /* Transparent background */
+    color: #95016e; /* Set text color */
+}
+
+/* General Button Styles */
+.btn {
+    cursor: pointer; /* Set cursor style to pointer */
+}
+
+/* Button Hover Effect */
+.btn.btn-default:hover {
+    border-color: #7e0833; /* Change border color on hover */
+}
+
+/* Button Clicked Effect */
+.btn.btn-default:active {
+    border-color: #094580; /* Change border color when clicked */
+}
+
+.img-info{
+    color:#111314!important;
+    font-size: 0.7rem;
+}
+
+/* Card Styles */
+.card {
+    background-clip: padding-box; /* Clip background within padding */
+    box-shadow: 0 1px 4px rgba(189, 209, 233, 0.012); /* Add box shadow */
+}
+
+/* Row Bordered Styles */
+.row-bordered {
+    overflow: hidden; /* Hide overflowing content */
+}
+
+/* Account Settings File Input Styles */
+.account-settings-fileinput {
+    position: absolute; /* Position as absolute */
+    visibility: hidden; /* Hide element */
+    width: 1px; /* Set width */
+    height: 1px; /* Set height */
+    opacity: 0; /* Set opacity */
+}
+
+/* Active Tab Styling */
+.account-settings-links .list-group-item.active {
+    font-weight: bold !important; /* Set font weight for active tab */
+}
+
+/* Account Settings Links Styles */
+.light-style .account-settings-links .list-group-item,
+.material-style .account-settings-links .list-group-item,
+.dark-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem; /* Set padding for account settings links */
+    border-color: rgba(43, 45, 46, 0.883) !important; /* Set border color */
+}
+
+/* Active Account Settings Links Styles */
+.light-style .account-settings-links .list-group-item.active,
+.material-style .account-settings-links .list-group-item.active,
+.dark-style .account-settings-links .list-group-item.active {
+    color: #212224 !important; /* Set text color for active links */
+}
+
+/* Light Style Account Settings Links Styles */
+.light-style .account-settings-links .list-group-item,
+.light-style .account-settings-links .list-group-item.active {
+    color: #2d2e30 !important; /* Set text color for light style */
+}
+
