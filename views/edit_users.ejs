@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Byte Food - Table Reservation</title>
+    <link rel="stylesheet" href="/public/add_users.css">
+</head>
+<body>
+    <header>
+        <h1>Edit User ( <%= user.name %>)</h1>
+    </header>
+    <nav>
+        <a href="/index.ejs" class="back-button">Back</a>
+    </nav>
+    <div class="container">
+        <form action="/update/<%= user._id %>" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= user.userName %>" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<%= user.emailAddress %>" required>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value="<%= user.date %>" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" value="<%= user.time %>" required>
+            <label for="tableNo">Table Number:</label>
+            <input type="array" id="tableNo" name="tableNumber" value="<%= user.tableNumbers %>" required>
+
+            <input type="submit" name="submit" value="Update User">
+        </form>
+    </div>
+        
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

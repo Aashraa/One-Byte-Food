@@ -121,11 +121,16 @@ markReservedSeats(); // Mark reserved seats in red
 
 document.querySelector('#reserve-button').addEventListener('click', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const time = document.getElementById('time').value.trim();
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
+
+    if (!name || !email || !date || !time || !selectedSeats.length) {
+        alert("Please fill out all fields and select at least one seat.");
+        return;
+    }
 
     if (!selectedSeats.length) {
         console.error("No seats selected. Please select at least one seat.");
@@ -159,7 +164,9 @@ document.querySelector('#reserve-button').addEventListener('click', async (e) =>
 
         if (response.ok) {
             console.log("Data sent successfully");
+            alert("Table has been reserved successfully")
             clearLocalStorage();
+            window.location.href = '/homepage/homepage.html';
         } else {
             console.error("Failed to send data");
         }
