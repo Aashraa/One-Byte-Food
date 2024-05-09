@@ -192,6 +192,10 @@ select {
     background-color: #bd0000;
 }
 
+.seat.reserved {
+    background-color: #bd0000;
+}
+
 .seat:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2);

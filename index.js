@@ -3,6 +3,12 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const http = require("http");
 const { Server } = require("socket.io");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
+
+const adminRoutes = require("./routes/routes");
+const Reservations = require("./models/users");
 
 const app = express();
 const PORT = 3001;
@@ -12,6 +18,18 @@ const DB_URL = 'mongodb://localhost:27017/onebytefood';
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'my secret key',
+    cookie: { maxAge: 6000 },
+    saveUninitialized: true,
+    resave: false,
+}));
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.session = req.session.message;
+    delete req.session.message;
+    next();
+});
 
 // Database connection
 mongoose.connect(DB_URL)
@@ -19,20 +37,22 @@ mongoose.connect(DB_URL)
     .catch(error => console.error("Error in Connecting to Database:", error));
 
 // Schema and Model
-const dataSchema = new mongoose.Schema({
-    userName: String,
-    emailAddress: String,
-    date: Date,
-    time: String,
-    tableNumbers: Array
-});
-const Data = mongoose.model('reservations', dataSchema);
+// const dataSchema = new mongoose.Schema({
+//     userName: String,
+//     emailAddress: String,
+//     date: Date,
+//     time: String,
+//     tableNumbers: Array
+// });
+// const Data = mongoose.model('reservations', dataSchema);
+
+const Data = Reservations;
 
 // Routes
 app.post("/sign_in", async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await mongoose.connection.collection('customersignup').findOne({ email });
+        const user = await mongoose.connection.collection('userdetails').findOne({ email });
 
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
@@ -40,7 +60,7 @@ app.post("/sign_in", async (req, res) => {
 
         if (user.password === password) {
             console.log("Login successful:", user.name);
-            return res.status(200).json({ success: true, name: user.name });
+            return res.status(200).json({ success: true, name: user.name, isAdmin: user.isAdmin });
         } else {
             return res.status(401).send('Credentials do not match');
         }
@@ -53,7 +73,7 @@ app.post("/sign_in", async (req, res) => {
 app.post("/sign_up", async (req, res) => {
     try {
         const { username: name, email, password } = req.body;
-        await mongoose.connection.collection('customersignup').insertOne({ name, email, password });
+        await mongoose.connection.collection('userdetails').insertOne({ name, email, password, isAdmin: false});
         console.log("User registered:", name);
         return res.status(200).json({ success: true, name });
     } catch (error) {
@@ -79,8 +99,8 @@ app.post('/sendData', async (req, res) => {
 // Route to get reserved seats from the database
 app.get("/getReservedSeats", async (req, res) => {
     try {
-        const reservedSeats = await Data.find().distinct('tableNumbers');
-
+        const { date } = req.query;
+        const reservedSeats = await Data.find({ date: date }).distinct('tableNumbers');
         res.json(reservedSeats);
     } catch (error) {
         console.error('Error fetching reserved seats:', error);
@@ -88,6 +108,8 @@ app.get("/getReservedSeats", async (req, res) => {
     }
 });
 
+// Admin Routes
+app.use("/admin", adminRoutes);
 
 app.get("/", (req, res) => {
     res.set("Allow-acces-Allow-Origin", '*');

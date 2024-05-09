@@ -59,6 +59,7 @@ async function markReservedSeats() {
     }
 }
 
+
 // Update the selected seats count and total price
 function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll(".row .seat.selected");
@@ -118,6 +119,36 @@ seatContainer.addEventListener("click", (e) => {
 populateUI();
 updateSelectedCount(); // Ensure count and total are updated on page load
 markReservedSeats(); // Mark reserved seats in red
+
+// Listen for changes in the date input and fetch reserved seats for that date
+document.getElementById('date').addEventListener('change', async (e) => {
+    const date = e.target.value.trim();
+
+    try {
+        const response = await fetch(`/getReservedSeats?date=${date}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch reserved seats');
+        }
+        const reservedSeats = await response.json();
+
+        // Clear previously marked reserved seats
+        document.querySelectorAll('.seat.occupied').forEach(seat => {
+            seat.classList.remove('occupied');
+        });
+
+        // Mark reserved seats for the selected date
+        reservedSeats.forEach(seatNumber => {
+            const seat = document.querySelector(`.seat[data-number="${seatNumber}"]`);
+            if (seat) {
+                seat.classList.add("occupied");
+            }
+        });
+
+        console.log('Reserved seats marked for', date, ':', reservedSeats);
+    } catch (error) {
+        console.error('Error fetching reserved seats:', error);
+    }
+});
 
 document.querySelector('#reserve-button').addEventListener('click', async (e) => {
     e.preventDefault();
