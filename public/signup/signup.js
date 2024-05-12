@@ -113,7 +113,7 @@ const handleLogin = async (event) => {
             document.cookie = `sessionToken=${responseData.sessionToken};`;
             if (responseData.isAdmin) {
                 // If user is admin, redirect to index.ejs
-                window.location.href = '/views/index.ejs';
+                window.location.href = '/views/admin.ejs';
             } else {
                 // If user is not admin, redirect to homepage
                 window.location.href = '/homepage/homepage.html';

@@ -6,6 +6,7 @@ const { Server } = require("socket.io");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
+const router = express.Router();
 
 const adminRoutes = require("./routes/routes");
 const Reservations = require("./models/users");
@@ -38,6 +39,23 @@ mongoose.connect(DB_URL)
     .catch(error => console.error("Error in Connecting to Database:", error));
 
 const Data = Reservations;
+
+// Set EJS as the view engine
+app.set("view engine", "ejs");
+
+// Middleware to check if the user is an admin
+const isAdmin = (req, res, next) => {
+    if (req.session && req.session.isAdmin) {
+        next();
+    } else {
+        res.status(403).send('Forbidden');
+    }
+};
+
+// Route handler for rendering the admin dashboard
+app.get("/views/admin.ejs", isAdmin, (req, res) => {
+    res.render("admin", { title: "Admin Dashboard" });
+});
 
 // Routes
 app.post("/sign_in", async (req, res) => {
@@ -113,6 +131,16 @@ app.get("/getReservedSeats", async (req, res) => {
     }
 });
 
+app.get("/customers", async (req, res) => {
+    try {
+        const numberOfCustomers = await Customer.countDocuments();
+        res.json({ numberOfCustomers });
+    } catch (error) {
+        console.error('Error fetching number of customers:', error);
+        res.status(500).json({ message: 'Failed to fetch number of customers' });
+    }
+});
+
 // Admin Routes
 app.use("/admin", adminRoutes);
 
@@ -136,3 +164,5 @@ io.on("connection", (socket) => {
 server.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
+
+module.exports = router;
