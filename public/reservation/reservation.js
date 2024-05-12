@@ -13,6 +13,9 @@ const seatContainer = document.querySelector(".seating-container");
 const countElement = document.getElementById("count1");
 const totalElement = document.getElementById("total1");
 
+// Disable seat selection interface initially
+seatContainer.style.pointerEvents = "none";
+
 // Define seat prices
 const prices = {
     "For 2 to 4 Guests": 599,
@@ -37,7 +40,7 @@ socket.on("reservationUpdate", (data) => {
     // Update UI with new reservation data (if needed)
 });
 
-// Mark already reserved seats in red
+// Function to mark already reserved seats in red
 async function markReservedSeats() {
     try {
         const response = await fetch('/getReservedSeats');
@@ -91,6 +94,11 @@ function saveSelectedSeats(selectedSeats) {
 function clearLocalStorage() {
     localStorage.removeItem("selectedSeats");
     console.log("Local storage cleared.");
+
+    // Clear UI selection
+    document.querySelectorAll('.row .seat.selected').forEach(seat => {
+        seat.classList.remove('selected');
+    });
 }
 
 // Populate the UI with data from local storage
@@ -109,6 +117,14 @@ function populateUI() {
 
 // Event delegation for seat selection
 seatContainer.addEventListener("click", (e) => {
+    // Check if the date has been selected
+    const selectedDate = document.getElementById('date').value.trim();
+    if (!selectedDate) {
+        alert("Please select a date first.");
+        return;
+    }
+
+    // Continue with seat selection
     if (e.target.classList.contains("seat") && !e.target.classList.contains("occupied")) {
         e.target.classList.toggle("selected");
         updateSelectedCount();
@@ -123,6 +139,12 @@ markReservedSeats(); // Mark reserved seats in red
 // Listen for changes in the date input and fetch reserved seats for that date
 document.getElementById('date').addEventListener('change', async (e) => {
     const date = e.target.value.trim();
+
+    // Clear local storage when date changes
+    clearLocalStorage();
+
+    // Enable seat selection interface
+    seatContainer.style.pointerEvents = "auto";
 
     try {
         const response = await fetch(`/getReservedSeats?date=${date}`);
@@ -206,3 +228,5 @@ document.querySelector('#reserve-button').addEventListener('click', async (e) =>
     }
 });
 
+// Listen for beforeunload event to clear local storage before page unload
+window.addEventListener('beforeunload', clearLocalStorage);

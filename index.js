@@ -18,6 +18,7 @@ const DB_URL = 'mongodb://localhost:27017/onebytefood';
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET || 'my secret key',
     cookie: { maxAge: 6000 },
@@ -36,16 +37,6 @@ mongoose.connect(DB_URL)
     .then(() => console.log("Connected to Database"))
     .catch(error => console.error("Error in Connecting to Database:", error));
 
-// Schema and Model
-// const dataSchema = new mongoose.Schema({
-//     userName: String,
-//     emailAddress: String,
-//     date: Date,
-//     time: String,
-//     tableNumbers: Array
-// });
-// const Data = mongoose.model('reservations', dataSchema);
-
 const Data = Reservations;
 
 // Routes
@@ -60,6 +51,9 @@ app.post("/sign_in", async (req, res) => {
 
         if (user.password === password) {
             console.log("Login successful:", user.name);
+            // Create a session and store session token in session
+            req.session.user = user;
+            req.session.isAdmin = user.isAdmin;
             return res.status(200).json({ success: true, name: user.name, isAdmin: user.isAdmin });
         } else {
             return res.status(401).send('Credentials do not match');
@@ -80,6 +74,17 @@ app.post("/sign_up", async (req, res) => {
         console.error("Error:", error);
         return res.status(500).json({ message: 'Something went wrong with the server' });
     }
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Error destroying session:", err);
+            return res.status(500).json({ message: 'Something went wrong with the server' });
+        }
+        res.clearCookie('sessionToken'); 
+        res.redirect('/');
+    });
 });
 
 app.post('/sendData', async (req, res) => {

@@ -109,6 +109,8 @@ const handleLogin = async (event) => {
         if (response.ok) {
             alert('Login successful!');
             const responseData = await response.json();
+            // Store session token in cookie
+            document.cookie = `sessionToken=${responseData.sessionToken};`;
             if (responseData.isAdmin) {
                 // If user is admin, redirect to index.ejs
                 window.location.href = '/views/index.ejs';
