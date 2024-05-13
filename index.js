@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET || 'my secret key',
-    cookie: { maxAge: 6000 },
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
     saveUninitialized: true,
     resave: false,
 }));
@@ -32,6 +32,24 @@ app.use((req, res, next) => {
     delete req.session.message;
     next();
 });
+
+// Middleware to check if the user is logged in
+const isLoggedIn = (req, res, next) => {
+    if (req.session.user) {
+        next();
+    } else {
+        res.redirect('/login.html'); // Redirect to login page if user is not logged in
+    }
+};
+
+// Middleware to check if the user is an admin
+const isAdmin = (req, res, next) => {
+    if (req.session && req.session.isAdmin) {
+        next();
+    } else {
+        res.status(403).send('Forbidden');
+    }
+};
 
 // Database connection
 mongoose.connect(DB_URL)
@@ -43,19 +61,16 @@ const Data = Reservations;
 // Set EJS as the view engine
 app.set("view engine", "ejs");
 
-// Middleware to check if the user is an admin
-const isAdmin = (req, res, next) => {
-    if (req.session && req.session.isAdmin) {
-        next();
-    } else {
-        res.status(403).send('Forbidden');
-    }
-};
-
 // Route handler for rendering the admin dashboard
 app.get("/views/admin.ejs", isAdmin, (req, res) => {
     res.render("admin", { title: "Admin Dashboard" });
 });
+
+const cors = require('cors');
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3001', // Add the origin of your client-side application
+}));
 
 // Routes
 app.post("/sign_in", async (req, res) => {
@@ -72,7 +87,18 @@ app.post("/sign_in", async (req, res) => {
             // Create a session and store session token in session
             req.session.user = user;
             req.session.isAdmin = user.isAdmin;
-            return res.status(200).json({ success: true, name: user.name, isAdmin: user.isAdmin });
+            // Set session token in cookie
+            res.cookie('sessionToken', req.sessionID, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production' // Use secure cookies in production
+            });
+
+            // Redirect to corresponding page
+            if (user.isAdmin) {
+                res.redirect('/views/admin.ejs');
+            } else {
+                res.redirect('/homepage/homepage.html');
+            }
         } else {
             return res.status(401).send('Credentials do not match');
         }
@@ -81,6 +107,25 @@ app.post("/sign_in", async (req, res) => {
         return res.status(500).json({ message: 'Something went wrong with the server' });
     }
 });
+
+app.get('/check-login-status', (req, res) => {
+    const sessionToken = req.cookies.sessionToken;
+    if (sessionToken) {
+        res.json({ loggedIn: true });
+    } else {
+        res.json({ loggedIn: false });
+    }
+});
+
+app.get('/check_session', isLoggedIn, async (req, res) => {
+    try {
+      const user = await User.findById(req.session.user._id).populate('cart');
+      res.json({ isAdmin: user.isAdmin });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 app.post("/sign_up", async (req, res) => {
     try {
@@ -94,14 +139,14 @@ app.post("/sign_up", async (req, res) => {
     }
 });
 
-app.get("/logout", (req, res) => {
+app.post('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             console.error("Error destroying session:", err);
-            return res.status(500).json({ message: 'Something went wrong with the server' });
+            return res.sendStatus(500);
         }
-        res.clearCookie('sessionToken'); 
-        res.redirect('/');
+        res.clearCookie('sessionToken');
+        res.sendStatus(200);
     });
 });
 

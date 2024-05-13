@@ -86,9 +86,8 @@ const handleSignup = async (event) => {
     }
 };
 
-// Add event listener to the signup form
-document.querySelector('.sign-up-form').addEventListener('submit', handleSignup);
-
+// Add event listener to the signin form
+document.querySelector('.sign-in-form').addEventListener('submit', handleLogin);
 const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -107,12 +106,12 @@ const handleLogin = async (event) => {
         });
 
         if (response.ok) {
-            alert('Login successful!');
             const responseData = await response.json();
             // Store session token in cookie
             document.cookie = `sessionToken=${responseData.sessionToken};`;
+            // Check if user is admin
             if (responseData.isAdmin) {
-                // If user is admin, redirect to index.ejs
+                // If user is admin, redirect to admin dashboard
                 window.location.href = '/views/admin.ejs';
             } else {
                 // If user is not admin, redirect to homepage
@@ -132,9 +131,6 @@ const handleLogin = async (event) => {
         }
     } catch (error) {
         console.error('Error during login:', error);
-        alert('User not found');
+        alert('Login in failed.');
     }
 };
-
-// Add event listener to the login form
-document.querySelector('.sign-in-form').addEventListener('submit', handleLogin);

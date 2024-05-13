@@ -21,25 +21,108 @@ document.addEventListener('DOMContentLoaded', function () {
           }
       }
   });
+});
 
 
-    // Check if user is logged in and display name in navigation bar
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    if (loggedInUser) {
-        const user = JSON.parse(loggedInUser);
-        userNameElement.textContent = `Welcome, ${user.name}!`;
-    }
+// // Check for session token cookie on page load
+// window.addEventListener('DOMContentLoaded', () => {
+//     const sessionToken = getCookie('sessionToken');
+//     console.log(sessionToken)
+//     if (sessionToken) {
+//         // User is logged in, show logout button
+//         document.getElementById('signup-button').style.display = 'none'; // Hide signup button
+//         document.getElementById('logout-button').style.display = 'inline'; // Show logout button
+//     } else {
+//         // User is not logged in, show signup button
+//         document.getElementById('signup-button').style.display = 'inline'; // Show signup button
+//         document.getElementById('logout-button').style.display = 'none'; // Hide logout button
+//     }
+// });
 
-    // Check if a session token cookie exists
-    const sessionToken = document.cookie.includes('sessionToken');
+// // Function to get cookie value by name
+// function getCookie(name) {
+//     const cookies = document.cookie.split(';');
+//     for (let cookie of cookies) {
+//         const [cookieName, cookieValue] = cookie.split('=');
+//         if (cookieName.trim() === name) {
+//             return cookieValue;
+//         }
+//     }
+//     return null;
+// }
 
-    // Get the signup/login link element
-    const signupLoginLink = document.getElementById('signup-login-link');
+// // Handle logout button click event
+// document.getElementById('logout-button').addEventListener('click', () => {
+//     // Expire session token cookie
+//     document.cookie = 'sessionToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+//     // Redirect to login page or any other appropriate action
+//     window.location.href = '/login.html'; // Redirect to login page after logout
+// });
 
-    // If session token exists, change signup/login link to logout
+document.addEventListener('DOMContentLoaded', () => {
+    const sessionToken = getCookie('sessionToken');
+    console.log(sessionToken)
     if (sessionToken) {
-        signupLoginLink.innerHTML = '<a href="/logout">Logout</a>';
+        // User is logged in, show logout button
+        document.getElementById('signup-button').style.display = 'none'; // Hide signup button
+        document.getElementById('logout-button').style.display = 'inline'; // Show logout button
+    } else {
+        // User is not logged in, show signup button
+        document.getElementById('signup-button').style.display = 'inline'; // Show signup button
+        document.getElementById('logout-button').style.display = 'none'; // Hide logout button
     }
+});
+
+// Function to get cookie value by name
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.split('=');
+        if (cookieName.trim() === name) {
+            return cookieValue;
+        }
+    }
+    return null;
+}
+
+// Handle logout button click event
+document.getElementById('logout-button').addEventListener('click', () => {
+    // Send a request to the server to destroy the session and clear the cookies
+    fetch('/logout', {
+        method: 'POST',
+        credentials: 'include',
+    })
+    .then(() => {
+        // Redirect to homepage
+        window.location.href = '/';
+    })
+    .catch(error => {
+        console.error('Error logging out:', error);
+    });
+});
+
+// Function to send a request to the server to check if the user is logged in
+function checkLoginStatus() {
+    fetch('/check-login-status')
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
+                // User is logged in, show logout button
+                document.getElementById('signup-button').style.display = 'none'; // Hide signup button
+                document.getElementById('logout-button').style.display = 'inline'; // Show logout button
+            } else {
+                // User is not logged in, show signup button
+                document.getElementById('signup-button').style.display = 'inline'; // Show signup button
+                document.getElementById('logout-button').style.display = 'none'; // Hide logout button
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching check-login-status:', error);
+        });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    checkLoginStatus();
 });
 
 // JavaScript for rotating buttons

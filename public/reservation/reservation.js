@@ -62,7 +62,6 @@ async function markReservedSeats() {
     }
 }
 
-
 // Update the selected seats count and total price
 function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll(".row .seat.selected");
