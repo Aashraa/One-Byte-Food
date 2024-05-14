@@ -1,25 +1,10 @@
 const mongoose = require('mongoose');
-const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: Date,
-        required: true
-    },
-    time: {
-        type: String,
-        required: true
-    },
-    tableNumber: {
-        type: {},
-        required: true
-    },
+const dataSchema = new mongoose.Schema({
+    userName: String,
+    emailAddress: String,
+    date: Date,
+    time: String,
+    tableNumbers: Array
 });
 
-module.exports=mongoose.model("User",userSchema);
+module.exports=mongoose.model("reservations",dataSchema);

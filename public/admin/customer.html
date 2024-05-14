@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Table</title>
+    <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+    <h1>Customer Table</h1>
+
+    <button onclick="addCustomer()">Add Customer</button>
+
+    <table id="customerTable">
+        <thead>
+            <tr>
+                <th>Table No</th>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Number</th>
+                <th>Payment</th>
+                <th>Date/Time</th>
+                <th>Action</th> <!-- New column for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>101</td>
+                <td>John</td>
+                <td>john@example.com</td>
+                <td>0123456789</td>
+                <td>1000</td>
+                <td>2022-02-20 12:30:00</td>
+                <td>
+                    <button onclick="deleteCustomer(0)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>102</td>
+                <td>Jane</td>
+                <td>jane@example.com</td>
+                <td>9876543210</td>
+                <td>2000</td>
+                <td>2022-02-20 13:00:00</td>
+                <td>
+                    <button onclick="deleteCustomer(1)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>103</td>
+                <td>Bob</td>
+                <td>bob@example.com</td>
+                <td>0987654321</td>
+                <td>3000</td>
+                <td>2022-02-20 14:00:00</td>
+                <td>
+                    <button onclick="deleteCustomer(2)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="customer.js"></script>
+</body>
+</html>
