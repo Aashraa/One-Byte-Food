@@ -9,7 +9,7 @@
 </head>
 <body>
       <header>
-        <div class="logo">OneByte</div>
+        <div class="logo"><img src="images/onebytelogo.png" alt="onebytelogo"></div>
         <input type="checkbox" id="nav_check" hidden>
         <nav>
             <ul>
@@ -22,8 +22,11 @@
                 <li>
                     <a href="#contact-us" class="scroll-to">Contact</a>
                 </li>
+                <li>
+                    <span id="user-name"></span>
+                </li>
                 <li><a id="signup-button" href="/signup/signup.html">Signup</a></li>
-                <li><a id="logout-button" style="display: none;">Logout</a></li>
+                <li><a id="logout-button">Logout</a></li>
             </ul>
         </nav>
         <label for="nav_check" class="hamburger">
@@ -39,7 +42,7 @@
             <p>Delicious Bites in Every Byte</p>
         </section>
         <section class="buttons">
-            <a href="../reservation/reservation.html" class="reserve-btn">Reserve Table</a>
+            <a class="reserve-btn" id="reserve-table-btn">Reserve Table</a>
         </section>
     </main>
 

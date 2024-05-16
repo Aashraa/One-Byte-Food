@@ -25,6 +25,15 @@ header {
     margin-right: auto;
 }
 
+.logo img {
+    width: 80px;
+    height: auto; 
+    display: block; 
+    margin: 0 auto;
+    border-radius: 50%; 
+    object-fit: cover
+}
+
 nav ul {
     list-style-type: none;
     display: flex;
@@ -42,6 +51,11 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #ffcc00;
+}
+
+#logout-button{
+    display: none;
+    color: red;
 }
 
 .dropdown {
@@ -118,12 +132,6 @@ nav ul li a:hover {
         display: flex;
     }
 }
-
-
-
-
-
-
 
 main {
     background-image: url('images/new.jpg');

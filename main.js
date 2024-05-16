@@ -30,6 +30,55 @@ app.use(session({
 
 app.use(flash());
 
+app.get("/customers", async (req, res) => {
+    try {
+        // Fetch user data from the database
+        const users = await mongoose.connection.collection('userdetails').find().toArray();
+        
+        // Render the HTML template with user data
+        res.render("customers", { title: "Customer Table", users: users });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: 'Something went wrong with the server' });
+    }
+});
+
+// Define the route to fetch the number of customers
+app.get("/customer-count", async (req, res) => {
+    try {
+        const numberOfCustomers = await mongoose.connection.collection('userdetails').countDocuments();
+        res.json({ numberOfCustomers });
+    } catch (error) {
+        console.error('Error fetching number of customers:', error);
+        res.status(500).json({ message: 'Failed to fetch number of customers' });
+    }
+}); 
+
+app.get("/index", async (req, res) => {
+    try {
+        // Fetch user data from the database
+        const users = await mongoose.connection.collection('reservations').find().toArray();
+        
+        // Render the HTML template with user data
+        res.render("index", { title: "Customer Table", users: users });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: 'Something went wrong with the server' });
+    }
+});
+
+// Define the route to fetch the number of customers
+app.get("/reservation-count", async (req, res) => {
+    try {
+        const numberOfReservations = await mongoose.connection.collection('reservations').countDocuments();
+        res.json({ numberOfReservations });
+    } catch (error) {
+        console.error('Error fetching number of customers:', error);
+        res.status(500).json({ message: 'Failed to fetch number of customers' });
+    }
+}); 
+
+
 app.use((req, res, next) => {
     res.locals.session = req.session.message;
     delete req.session.message;

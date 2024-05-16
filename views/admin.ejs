@@ -114,20 +114,18 @@
        position: absolute;
        bottom: 20px;
        left: 20px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      padding: 10px 20px;
-      border-radius: 5px;
-      background-color: #d50000;
-      }
+       color: #f0f0f0;
+       text-decoration: none;
+       font-size: 18px;
+       padding: 10px 20px;
+       border-radius: 5px;
+       background-color: #d91818;
+    }
 
     .logout-button:hover {
-      background-color: #c20000;
-      }
+      background-color: #b71010;
+    }
  
-    
-
     /* ---------- MAIN ---------- */
     
     .main-container {
@@ -158,7 +156,7 @@
     }
     
     .card:first-child {
-      background-color: #05329d;
+      background-color: #0c46cd;
     }
     
     .card:nth-child(2) {
@@ -181,9 +179,9 @@
       font-size: 45px;
     }
     
-
-
-
+    
+  
+    
     /* ---------- MEDIA QUERIES ---------- */
     
     /* Medium <= 992px */
@@ -228,14 +226,13 @@
     /* Extra Small <= 576px */
     
     @media screen and (max-width: 576px) {
-      .hedaer-left {
+      .header-left {
         display: none;
       }
     }
   </style>
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="public/admin.css">
+
 </head>
 <body>
   <div class="grid-container">
@@ -244,7 +241,7 @@
     <aside id="sidebar">
       <div class="sidebar-title">
         <div class="sidebar-brand">
-          <img src="https://www.seattleschools.org/wp-content/uploads/2018/11/logo-ssc-white-200x57.png" alt="Seattle Schools logo" />
+          <img src="/views/onebytelogo.png" alt="One Byte Food" />
         </div>
         <span class="material-icons-outlined close-sidebar">close</span>
       </div>
@@ -255,14 +252,22 @@
             <span class="material-icons-outlined">dashboard</span> Dashboard
           </a>
         </li>
+
+        <li class="sidebar-list-item">
+          <a href="/customers" class="sidebar-link">
+            <span class="material-icons-outlined">groups</span> Customers 
+          </a>
+        </li>
+
       
         <li class="sidebar-list-item">
           <a href="/index" class="sidebar-link">
-            <span class="material-icons-outlined">groups</span> Customers Details
+            <span class="material-icons-outlined">book_online</span> Reservations 
           </a>
         </li>
-      </ul>
 
+        
+      </ul>
       <div class="logout-button bottom-left">
         <a href="/logout">Logout</a>
       </div>
@@ -276,34 +281,51 @@
       </div>
 
       <div class="main-cards">
-
-        <div class="card">
-          <div class="card-inner">
-            <h3>Available Table</h3>
-            <span class="material-icons-outlined">inventory_2</span>
-          </div>
-          <h1>20</h1>
-        </div>
-
+        
         <div class="card">
           <div class="card-inner">
             <h3>CUSTOMERS</h3>
             <span class="material-icons-outlined">groups</span>
           </div>
-          <h1>10</h1>
+          <h1 id="no-of-customers">Loading...</h1> 
         </div>
-
+        
         <div class="card">
           <div class="card-inner">
             <h3>RESERVATIONS</h3>
-            <span class="material-icons-outlined">notification_important</span>
+            <span class="material-icons-outlined">book_online</span>
           </div>
-          <h1>56</h1>
+          <h1 id="no-of-reservations">Loading...</h1>
         </div>
+        
+        
       </div>
-    </main>
-  </div>
+  </main>
+</div>
 
-  <script src="admin.js"></script>
+<script>
+  // Fetch number of customers from the server
+fetch("/customer-count")
+.then(response => response.json())
+.then(data => {
+    // Update the number of customers in the HTML
+    document.getElementById("no-of-customers").textContent = data.numberOfCustomers;
+})
+.catch(error => console.error("Error fetching number of customers:", error));
+</script>
+
+
+<script>
+  // Fetch number of customers from the server
+fetch("/reservation-count")
+.then(response => response.json())
+.then(data => {
+    // Update the number of customers in the HTML
+    document.getElementById("no-of-reservations").textContent = data.numberOfReservations;
+})
+.catch(error => console.error("Error fetching number of reervations:", error));
+</script>
+
+<script src="admin.js"></script>
 </body>
 </html>
