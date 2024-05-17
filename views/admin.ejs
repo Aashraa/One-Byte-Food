@@ -114,16 +114,16 @@
        position: absolute;
        bottom: 20px;
        left: 20px;
-       color: #f0f0f0;
+       color: #fff;
        text-decoration: none;
        font-size: 18px;
        padding: 10px 20px;
        border-radius: 5px;
-       background-color: #d91818;
+       background-color: #d50000;
     }
 
     .logout-button:hover {
-      background-color: #b71010;
+      background-color: #8c0707;
     }
  
     /* ---------- MAIN ---------- */
@@ -156,18 +156,13 @@
     }
     
     .card:first-child {
-      background-color: #0c46cd;
+      background-color: #7d2e52;
     }
     
     .card:nth-child(2) {
       background-color: #088f37;
     }
     
-    .card:nth-child(3) {
-      background-color: #7d2e52;
-    }
-    
-  
     
     .card-inner {
       display: flex;
@@ -241,14 +236,16 @@
     <aside id="sidebar">
       <div class="sidebar-title">
         <div class="sidebar-brand">
-          <img src="/views/onebytelogo.png" alt="One Byte Food" />
+          <span class="sidebar-brand" style="color:#dfb46c">One Byte</span>
+          <span class="sidebar-brand">Food</span>
+         
         </div>
         <span class="material-icons-outlined close-sidebar">close</span>
       </div>
 
       <ul class="sidebar-list">
         <li class="sidebar-list-item">
-          <a href="#" class="sidebar-link">
+          <a href="/" class="sidebar-link">
             <span class="material-icons-outlined">dashboard</span> Dashboard
           </a>
         </li>
@@ -268,7 +265,7 @@
 
         
       </ul>
-      <div class="logout-button bottom-left">
+      <div class="logout-button bottom-left" >
         <a href="/logout">Logout</a>
       </div>
     </aside>

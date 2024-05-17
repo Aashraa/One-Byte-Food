@@ -162,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function () {
   const accountLink = document.querySelector('.has-dropdown > a');
   const accountDropdown = document.querySelector('.dropdown');
-  const userNameElement = document.getElementById('user-name');
 
   // Function to toggle dropdown
   function toggleDropdown() {
@@ -191,5 +190,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const userNameElement = document.getElementById('user-name');
     userNameElement.textContent = `Hi, ${user.name}!`;
     console.log(userNameElement.textContent);
+
+    // Add event listener to toggle the dropdown menu
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    userNameElement.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('show');
+    });
   }
 });

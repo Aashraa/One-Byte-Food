@@ -8,7 +8,6 @@ const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
 const router = express.Router();
 
-const adminRoutes = require("./routes/routes");
 const Reservations = require("./models/users");
 
 const app = express();
@@ -112,7 +111,7 @@ app.get('/check-login-status', (req, res) => {
     const sessionToken = req.cookies.sessionToken;
     if (sessionToken) {
         const user = req.session.user;
-        res.json({ loggedIn: true, userName: user.name });
+        res.json({ loggedIn: true, userName: user.name, userId: user._id });
     } else {
         res.json({ loggedIn: false });
     }
@@ -203,7 +202,6 @@ app.get("/customer-count", async (req, res) => {
 
 app.get("/index", async (req, res) => {
     try {
-        // Fetch user data from the database
         const users = await mongoose.connection.collection('reservations').find().toArray();
         
         // Render the HTML template with user data
@@ -225,8 +223,155 @@ app.get("/reservation-count", async (req, res) => {
     }
 }); 
 
-// Admin Routes
-app.use("/admin", adminRoutes);
+// Hypothetical route handler for fetching reservations based on userName
+app.get('/api/reservations/:userName', async (req, res) => {
+    const userName = req.params.userName;
+    console.log(userName);
+
+    try {
+        const cursor = await mongoose.connection.collection('reservations').find({ userName: userName });
+        const reservations = await cursor.toArray(); // Convert cursor to array
+
+        if (!reservations || reservations.length === 0) {
+            return res.status(404).json({ error: 'No reservations found' });
+        }
+
+        console.log('Reservations:', reservations); // Log reservations
+        res.json(reservations);
+    } catch (error) {
+        console.error('Error fetching reservations:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get("/admin", async (req, res) => {
+    try {
+        const users = await Reservations.find();
+        res.render('admin.ejs', { title: "Admin Dashboard", users: users, message: req.flash() });
+        req.session.message = null;
+    } catch (error) {
+        res.status(500).json({ message: error.message, type: 'danger' });
+    }
+});
+
+// Render the index page with all users
+app.get("/index", async (req, res) => {
+    try {
+        const users = await Reservations.find();
+        res.render('index.ejs', { title: "Home page", users: users });
+    } catch (error) {
+        res.status(500).json({ message: error.message, type: 'danger' });
+    }
+});
+
+// Insert user into database
+app.post('/add', async (req, res) => {
+    try {
+        const user = new Reservations({
+            userName: req.body.name,
+            emailAddress: req.body.email,
+            date: req.body.date,
+            time: req.body.time,
+            tableNumbers: req.body.tableNumber,
+        });
+        
+        await user.save();
+        console.log('success');
+        
+        // Set the message variable in the session
+        req.flash('success', 'User added successfully!');
+       
+        
+        // Redirect to the home page after setting the message
+        res.redirect("/");
+    } catch (error) {
+        res.status(500).json({ message: error.message, type: 'danger' });
+    }
+});
+
+// Render the form to add users
+app.get("/add", (req, res) => {
+    res.render('add_users', { title: "Add users" });
+});
+
+
+// Edit a user
+app.get("/edit/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = await Reservations.findById(id).exec(); // Use exec() to execute the query
+
+        if (!user) {
+            res.redirect("/");
+        } else {
+            res.render('edit_users', { title: "Edit user", user: user });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+// Update user route
+app.post("/update/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const updatedUser = await Reservations.findByIdAndUpdate(id, {
+            userName: req.body.name,
+            emailAddress: req.body.email,
+            date: req.body.date,
+            time: req.body.time,
+            tableNumbers: req.body.tableNumber,
+        });
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found", type: "danger" });
+        }
+
+        req.session.message = {
+            type: "success",
+            message: "User updated successfully!",
+        };
+        res.redirect('/index');
+    } catch (error) {
+        res.status(500).json({ message: error.message, type: "danger" });
+    }
+});
+
+// Delete user route
+app.post("/delete/:id", async (req, res) => {
+    let id = req.params.id;
+    try {
+        const deletedUser = await Reservations.findOneAndDelete({ _id: id });
+        if (!deletedUser) {
+            return res.status(404).json({ message: "User not found", type: "danger" });
+        }
+        req.session.message = {
+            type: "success",
+            message: "User deleted successfully!",
+        };
+        res.redirect("/index");
+    } catch (error) {
+        res.status(500).json({ message: error.message, type: "danger" });
+    }
+});
+
+
+// GET route to handle deletion confirmation
+app.get("/delete/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = await Reservations.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found", type: "danger" });
+        }
+
+        res.render("delete_confirmation", { title: "Delete User", user: user });
+    } catch (error) {
+        res.status(500).json({ message: error.message, type: "danger" });
+    }
+});
 
 app.get("/", (req, res) => {
     res.set("Allow-acces-Allow-Origin", '*');

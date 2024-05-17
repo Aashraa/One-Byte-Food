@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #171819;
+            background-color: #f4ee94d9;
             color: #333;
             margin: 0;
             padding: 0;
@@ -17,16 +17,21 @@
 
         h1 {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 0;
             color: #c6cedc;
+            background-color: #333;
+            padding: 20px;
+            margin: 0;
+            border-bottom: 2px solid #fff;
         }
 
         .container {
             margin-top: 20px;
-            background-color: #a6a1a1;
+            background-color: #fffab0;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto; /* Allow horizontal scrolling on small screens */
         }
 
         .table-responsive {
@@ -44,8 +49,10 @@
             padding: 12px;
             text-align: center;
             vertical-align: middle;
+            white-space: normal; /* Allow text wrapping */
+            overflow: visible; /* Ensure all content is visible */
         }
-
+        
         th {
             background-color: #1a1212;
             color: #fff;
@@ -69,11 +76,14 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-decoration: none; /* Remove underline from links */
+            display: inline-block; /* Allow proper button alignment */
+            text-align: center;
         }
 
         .btn-primary {
-            background-color: #1a46ca;
-            color: #ffffff;
+            background-color: #0835bd;
+            color: #fff;
             border: none;
         }
 
@@ -104,61 +114,102 @@
             border-color: #007bff;
             outline: none;
         }
+
+        /* Pagination Controls */
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_paginate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dataTables_length label {
+            margin-right: 10px;
+        }
+
+        .dataTables_paginate .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dataTables_paginate .paginate_button {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .dataTables_paginate .paginate_button.active {
+            background-color: #98c6f3;
+            color: #fff;
+            border: 1px solid #343a40;
+        }
+
+        /* Responsive Styling */
+        @media screen and (max-width: 768px) {
+            table {
+                font-size: 12px; /* Decrease font size for small screens */
+            }
+            th, td {
+                padding: 8px; /* Decrease padding for small screens */
+            }
+            .btn {
+                padding: 6px 12px; /* Decrease button padding for small screens */
+            }
+        }
     </style>
 </head>
 <body>
-   
     <h1>Customer Table</h1>
-    <a href="/add" class="btn btn-primary">Add Reservation</a>
-    
-        <div class="container">
-            <div class="table-responsive">
-                <% if(users !='') { %>
-                <table class="table table-striped text-center" id="user-table">
-                    <thead>
-                        <tr class="align-middle">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Table Number</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
-                        <% users.forEach((row, index) => { %>
-                            <tr>
-                                <td><%= index %></td>
-                                <td><%= row.userName %></td>
-                                <td><%= row.emailAddress %></td>
-                                <td><%= row.date %></td>
-                                <td><%= row.time %></td>
-                                <td><%= row.tableNumbers %></td>
-                                <td>
-                                    <!-- Edit button -->
-                                    <a href="/edit/<%= row._id %>" class="btn btn-primary">Edit</a>
-                                    <!-- Delete button -->
-                                    <a href="/delete/<%= row._id %>" class="btn btn-danger">Delete</a>
-                                </td>
-                            </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
-                <% } else { %>
-                   <h1 class="text-center text-secondary mt-5">No users found in the database</h1>
-                <% } %>
-            </div>
+    <div class="container">
+        <a href="/add" class="btn btn-primary mb-3">Add Reservation</a>
+        <div class="table-responsive">
+            <% if(users !='') { %>
+            <table class="table table-striped text-center" id="user-table">
+                <thead>
+                    <tr class="align-middle">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Table Number</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <% users.forEach((row, index) => { %>
+                    <tr>
+                        <td><%= index %></td>
+                        <td><%= row.userName %></td>
+                        <td><%= row.emailAddress %></td>
+                        <td><%= row.date %></td>
+                        <td><%= row.time %></td>
+                        <td><%= row.tableNumbers %></td>
+                        <td>
+                            <!-- Delete button -->
+                            <a href="/delete/<%= row._id %>" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <% } else { %>
+            <h1 class="text-center text-secondary mt-5">No users found in the database</h1>
+            <% } %>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#user-table').DataTable({
-                    order: [0, "desc"] // Sort table in descending order
-                });
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#user-table').DataTable({
+                order: [0, "desc"], // Sort table in descending order
+                autoWidth: false // Disable automatic column width calculation
             });
-        </script>
+        });
+    </script>
 </body>
 </html>

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/public/style.css">
+    <title>Customer Table</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #171819;
+            background-color: #f4ee94d9;
             color: #333;
             margin: 0;
             padding: 0;
@@ -20,11 +19,15 @@
             text-align: center;
             margin-top: 20px;
             color: #c6cedc;
+            background-color: #333;
+            padding: 20px;
+            margin: 0;
+            border-bottom: 2px solid #fff;
         }
 
         .container {
             margin-top: 20px;
-            background-color: #a6a1a1;
+            background-color: #fffab0;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -45,8 +48,10 @@
             padding: 12px;
             text-align: center;
             vertical-align: middle;
+            white-space: normal; /* Allow text wrapping */
+            overflow: visible; /* Ensure all content is visible */
         }
-
+        
         th {
             background-color: #1a1212;
             color: #fff;
@@ -73,7 +78,7 @@
         }
 
         .btn-primary {
-            background-color: #252629;
+            background-color: #0835bd;
             color: #fff;
             border: none;
         }
@@ -105,10 +110,40 @@
             border-color: #007bff;
             outline: none;
         }
+
+        /* Pagination Controls */
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_paginate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dataTables_length label {
+            margin-right: 10px;
+        }
+
+        .dataTables_paginate .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dataTables_paginate .paginate_button {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .dataTables_paginate .paginate_button.active {
+            background-color: #98c6f3;
+            color: #fff;
+            border: 1px solid #343a40;
+        }
     </style>
 </head>
+
 <body>
-   
     <h1>Customer Table</h1>
     <div class="container">
         <div class="table-responsive">
@@ -147,5 +182,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>
