@@ -5,26 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Byte Food - Table Reservation</title>
     <link rel="stylesheet" href="/public/add_users.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4ee94d9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #171819;
+            color: #c6cedc;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #171819;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .back-button {
+            background-color: #191a1c;
+            color: #f5d1d1;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block; /* Ensure the button does not stretch */
+            margin: 10px; /* Add margin to position it below the nav section */
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+            color: #fff; /* Change text color on hover for better contrast */
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fffab0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        input[type="array"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #393232;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Edit User ( <%= user.name %>)</h1>
+        <h1>Edit Reservation</h1>
     </header>
-    <nav>
-        <a href="/index.ejs" class="back-button">Back</a>
-    </nav>
+
+    <a href="/index" class="back-button">Back</a>
+    
     <div class="container">
         <form action="/update/<%= user._id %>" method="post">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<%= user.name %>" required>
+            <input type="text" id="name" name="name" value="<%= user.userName %>" required>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<%= user.email %>" required>
+            <input type="email" id="email" name="email" value="<%= user.emailAddress %>" required>
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" value="<%= user.date %>" required>
             <label for="time">Time:</label>
             <input type="time" id="time" name="time" value="<%= user.time %>" required>
             <label for="tableNo">Table Number:</label>
-            <input type="number" id="tableNo" name="tableNumber" value="<%= user.tableNumber %>" required>
+            <input type="array" id="tableNo" name="tableNumber" value="<%= user.tableNumbers %>" required>
 
             <input type="submit" name="submit" value="Update User">
         </form>

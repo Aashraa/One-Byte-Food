@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="delete-confirmation">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Confirmation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        button {
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff5555;
+        }
+    </style>
 </head>
 <body>
     <h1>Delete User</h1>
-    <p>Are you sure you want to delete <%= user.name %>?</p>
+    <p>Are you sure you want to delete <strong><%= user.name %></strong>?</p>
     <form action="/delete/<%= user._id %>" method="post">
         <button type="submit">Confirm Delete</button>
     </form>
 </body>
 </html>
+
