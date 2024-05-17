@@ -1,37 +1,87 @@
 <!DOCTYPE html>
-<html lang="delete-confirmation">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Confirmation</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4ee94d9;
+            color: #393232;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        .container {
+            background-color: #fffab0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #171819;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
         form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         button {
-            background-color: #ff3333;
+            background-color: #d50000;
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
+
         button:hover {
-            background-color: #ff5555;
+            background-color: #8c0707;
+        }
+
+        a.back-button {
+            background-color: #d0dced;
+            color: #1e1919;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        a.back-button:hover {
+            background-color: #0056b3;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Delete User</h1>
-    <p>Are you sure you want to delete <strong><%= user.name %></strong>?</p>
-    <form action="/delete/<%= user._id %>" method="post">
-        <button type="submit">Confirm Delete</button>
-    </form>
+    <div class="container">
+        <h1>Delete User</h1>
+        <p>Are you sure you want to delete <strong><%= user.name %></strong>?</p>
+        <form action="/delete/<%= user._id %>" method="post">
+            <button type="submit">Confirm Delete</button>
+        </form>
+        <a href="javascript:history.back()" class="back-button">Back</a>
+    </div>
 </body>
 </html>
-

@@ -3,116 +3,230 @@ const today = new Date().toISOString().split('T')[0];
 // Set the min attribute of the date input to today
 document.getElementById('date').setAttribute('min', today);
 
-// Function to check if a date is a Saturday
-function isSaturday(date) {
-    const dayOfWeek = new Date(date).getDay();
-    return dayOfWeek === 6; // 6 represents Saturday (0 is Sunday, 1 is Monday, ..., 6 is Saturday)
-}
+console.log("Client script loaded.");
 
-// Get the date input element
-const dateInput = document.getElementById('date');
-
-// Disable Saturdays and style them with red color
-dateInput.addEventListener('focus', function() {
-    const allDates = document.querySelectorAll('input[type="date"]::-webkit-calendar-date, input[type="date"]::-moz-calendar-box');
-    allDates.forEach(date => {
-        if (isSaturday(date.getAttribute('data-value'))) {
-            date.style.pointerEvents = 'none'; // Disable selection
-            date.style.color = 'red'; // Style as red
-        }
-    });
+document.querySelector('.back-button').addEventListener('click', () => {
+    history.back(); // Go back to the previous page
 });
 
-const seats = document.querySelectorAll(".row .seat:not(.occupied)");
-const seatContainer = document.querySelector(".row-container");
-const countElement = document.getElementById("count");
-const totalElement = document.getElementById("total");
-const tableSelect = document.getElementById("table");
+const seatContainer = document.querySelector(".seating-container");
+const countElement = document.getElementById("count1");
+const totalElement = document.getElementById("total1");
 
-let tablePrice = +tableSelect.value;
+// Disable seat selection interface initially
+seatContainer.style.pointerEvents = "none";
 
-// Initialize the UI
-populateUI();
+// Define seat prices
+const prices = {
+    "For 2 to 4 Guests": 599,
+    "For 5 to 8 Guests": 899,
+    "For 9 to 12 Guests": 1199
+};
+
+// WebSocket connection with server
+const socket = io();
+
+socket.on("connect", () => {
+    console.log("Connected to server");
+});
+
+socket.on("disconnect", () => {
+    console.log("Disconnected from server");
+});
+
+// Handle real-time reservation updates
+socket.on("reservationUpdate", (data) => {
+    console.log("Received reservation update:", data);
+    // Update UI with new reservation data (if needed)
+});
+
+// Function to mark already reserved seats in red
+async function markReservedSeats() {
+    try {
+        const response = await fetch('/getReservedSeats');
+        if (!response.ok) {
+            throw new Error('Failed to fetch reserved seats');
+        }
+        const reservedSeats = await response.json();
+
+        reservedSeats.forEach(seatNumber => {
+            const seat = document.querySelector(`.seat[data-number="${seatNumber}"]`);
+            if (seat) {
+                seat.classList.add("occupied");
+            }
+        });
+
+        console.log('Reserved seats marked:', reservedSeats);
+    } catch (error) {
+        console.error('Error fetching reserved seats:', error);
+    }
+}
+
 
 // Update the selected seats count and total price
 function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll(".row .seat.selected");
     const selectedSeatsCount = selectedSeats.length;
-  
-    // Determine the price based on the selected section
-    let price = 0;
-    const sectionContainers = document.querySelectorAll(".section");
-    sectionContainers.forEach(container => {
-        const subtitle = container.querySelector(".subtitle");
-        const sectionSeats = container.querySelectorAll(".row .seat.selected");
-        if (sectionSeats.length > 0) {
-            if (subtitle.textContent === "For 2 to 4 Guests") {
-                price = 599;
-            } else if (subtitle.textContent === "For 5 to 8 Guests") {
-                price = 899;
-            } else if (subtitle.textContent === "For 9 to 12 Guests") {
-                price = 1199;
-            }
-        }
+    console.log("Selected seats count:", selectedSeatsCount);
+
+    let totalPrice = 0;
+    selectedSeats.forEach(seat => {
+        const subtitle = seat.closest(".section").querySelector(".subtitle").textContent;
+        totalPrice += prices[subtitle];
     });
-  
-    const totalPrice = selectedSeatsCount * price;
-  
+
     // Update the UI with the count and total price
     countElement.textContent = selectedSeatsCount;
     totalElement.textContent = totalPrice;
-  
-    // Save the selected seats to local storage
-    saveSelectedSeats();
+
+    // Save the new selected seats to local storage
+    saveSelectedSeats(selectedSeats);
 }
 
-
-
 // Save the selected seats to local storage
-function saveSelectedSeats() {
-  const selectedSeats = document.querySelectorAll(".row .seat.selected");
-  const seatsIndex = Array.from(selectedSeats).map(seat => [...seats].indexOf(seat));
-  localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+function saveSelectedSeats(selectedSeats) {
+    const seatNumbers = Array.from(selectedSeats).map(seat => seat.dataset.number);
+    localStorage.setItem("selectedSeats", JSON.stringify(seatNumbers));
+    console.log("Selected seats saved to local storage.");
+}
+
+// Function to clear local storage
+function clearLocalStorage() {
+    localStorage.removeItem("selectedSeats");
+    console.log("Local storage cleared.");
+
+    // Clear UI selection
+    document.querySelectorAll('.row .seat.selected').forEach(seat => {
+        seat.classList.remove('selected');
+    });
 }
 
 // Populate the UI with data from local storage
 function populateUI() {
-  const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
-
-  if (selectedSeats && selectedSeats.length > 0) {
-    seats.forEach((seat, index) => {
-      if (selectedSeats.indexOf(index) > -1) {
-        seat.classList.add("selected");
-      }
-    });
-  }
-
-  const selectedTableIndex = localStorage.getItem("selectedTableIndex");
-  if (selectedTableIndex !== null) {
-    tableSelect.selectedIndex = selectedTableIndex;
-    tablePrice = +tableSelect.value;
-  }
-
-  // Update the selected count and total
-  updateSelectedCount();
+    const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+    if (selectedSeats) {
+        selectedSeats.forEach(seatNumber => {
+            const seat = document.querySelector(`.seat[data-number="${seatNumber}"]`);
+            if (seat) {
+                seat.classList.add("selected");
+            }
+        });
+    }
+    console.log("UI populated with data from local storage.");
 }
 
-// Event listener for table selection change
-tableSelect.addEventListener("change", function(e) {
-  tablePrice = +e.target.value;
-  setTableData(e.target.selectedIndex, e.target.value);
-  updateSelectedCount();
+// Event delegation for seat selection
+seatContainer.addEventListener("click", (e) => {
+    // Check if the date has been selected
+    const selectedDate = document.getElementById('date').value.trim();
+    if (!selectedDate) {
+        alert("Please select a date first.");
+        return;
+    }
+
+    // Continue with seat selection
+    if (e.target.classList.contains("seat") && !e.target.classList.contains("occupied")) {
+        e.target.classList.toggle("selected");
+        updateSelectedCount();
+    }
 });
 
-// Event listener for seat selection
-seatContainer.addEventListener("click", function(e) {
-  if (e.target.classList.contains("seat") && !e.target.classList.contains("occupied")) {
-    e.target.classList.toggle("selected");
-    updateSelectedCount();
-  }
+// Initialize the UI
+populateUI();
+updateSelectedCount(); // Ensure count and total are updated on page load
+markReservedSeats(); // Mark reserved seats in red
+
+// Listen for changes in the date input and fetch reserved seats for that date
+document.getElementById('date').addEventListener('change', async (e) => {
+    const date = e.target.value.trim();
+
+    // Clear local storage when date changes
+    clearLocalStorage();
+
+    // Enable seat selection interface
+    seatContainer.style.pointerEvents = "auto";
+
+    try {
+        const response = await fetch(`/getReservedSeats?date=${date}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch reserved seats');
+        }
+        const reservedSeats = await response.json();
+
+        // Clear previously marked reserved seats
+        document.querySelectorAll('.seat.occupied').forEach(seat => {
+            seat.classList.remove('occupied');
+        });
+
+        // Mark reserved seats for the selected date
+        reservedSeats.forEach(seatNumber => {
+            const seat = document.querySelector(`.seat[data-number="${seatNumber}"]`);
+            if (seat) {
+                seat.classList.add("occupied");
+            }
+        });
+
+        console.log('Reserved seats marked for', date, ':', reservedSeats);
+    } catch (error) {
+        console.error('Error fetching reserved seats:', error);
+    }
 });
 
+document.querySelector('#reserve-button').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const time = document.getElementById('time').value.trim();
+    const selectedSeats = document.querySelectorAll('.row .seat.selected');
 
+    if (!name || !email || !date || !time || !selectedSeats.length) {
+        alert("Please fill out all fields and select at least one seat.");
+        return;
+    }
 
-  
+    if (!selectedSeats.length) {
+        console.error("No seats selected. Please select at least one seat.");
+        return;
+    }
 
+    const tableNumbers = Array.from(selectedSeats).map(seat => seat.dataset.number);
+
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Date:", date);
+    console.log("Time:", time);
+    console.log("Table Numbers:", tableNumbers);
+
+    const data = {
+        userName: name,
+        emailAddress: email,
+        date: date,
+        time: time,
+        tableNumbers: tableNumbers
+    };
+
+    try {
+        const response = await fetch('/sendData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            console.log("Data sent successfully");
+            alert("Table has been reserved successfully")
+            clearLocalStorage();
+            window.location.href = '/homepage/homepage.html';
+        } else {
+            console.error("Failed to send data");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+});
+
+// Listen for beforeunload event to clear local storage before page unload
+window.addEventListener('beforeunload', clearLocalStorage);
