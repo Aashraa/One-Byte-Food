@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "name": "collab",
   "version": "1.0.0",
   "description": "",
@@ -8,17 +9,25 @@
     "test": "echo \"Error: no test specified\" && exit 1"
 =======
   "name": "node-crud",
+=======
+  "name": "collab",
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
 >>>>>>> 10df3536f0a88c8b5c6aa9283df2338107b5a72d
+=======
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
 <<<<<<< HEAD
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
@@ -28,18 +37,27 @@
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5"
 =======
+=======
+    "body-parser": "^1.20.2",
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "express-flash": "^0.0.2",
     "express-session": "^1.18.0",
+<<<<<<< HEAD
     "mongoose": "^8.3.3",
     "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
 >>>>>>> 10df3536f0a88c8b5c6aa9283df2338107b5a72d
+=======
+    "mongoose": "^8.3.1",
+    "nodemon": "^3.1.0",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5"
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
   }
 }

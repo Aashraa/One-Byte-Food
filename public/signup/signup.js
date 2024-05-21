@@ -74,9 +74,15 @@ const handleSignup = async (event) => {
         });
 
         if (response.ok) {
+<<<<<<< HEAD
             alert('Signup successful!');
             // Optionally, redirect the user to another page after successful signup
             window.location.href = '/homepage/homepage.html';
+=======
+            alert('Registered successful!');
+            // Optionally, redirect the user to another page after successful signup
+            window.location.href = '/signup/signup.html';
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
         } else {
             alert('Signup failed. Please try again later.');
         }
@@ -108,8 +114,21 @@ const handleLogin = async (event) => {
 
         if (response.ok) {
             alert('Login successful!');
+<<<<<<< HEAD
             // Login successful, redirect to homepage
             window.location.href = '/homepage/homepage.html';
+=======
+            const responseData = await response.json();
+            // Store session token in cookie
+            document.cookie = `sessionToken=${responseData.sessionToken};`;
+            if (responseData.isAdmin) {
+                // If user is admin, redirect to index.ejs
+                window.location.href = '/views/admin.ejs';
+            } else {
+                // If user is not admin, redirect to homepage
+                window.location.href = '/homepage/homepage.html';
+            }
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
         } else {
             const responseData = await response.json();
             if (responseData.message === 'User not found') {

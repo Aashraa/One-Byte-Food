@@ -35,6 +35,12 @@ nav {
 }
 
 .back-button {
+<<<<<<< HEAD
+=======
+    position: absolute;
+    top: 20px;
+    left: 20px;
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
@@ -192,6 +198,13 @@ select {
     background-color: #bd0000;
 }
 
+<<<<<<< HEAD
+=======
+.seat.reserved {
+    background-color: #bd0000;
+}
+
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
 .seat:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2);
@@ -232,6 +245,27 @@ select {
         flex-direction: column;
     }
 
+<<<<<<< HEAD
+=======
+    .container {
+        width: 90%; /* Adjust the width as needed */
+    }
+
+    .left-section,
+    .right-section {
+        width: 100%;
+        margin: 0; /* Remove margin between sections */
+    }
+
+    .right-section {
+        margin-top: 20px; /* Add some top margin to create space between sections */
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
     form,
     .table-container,
     .showcase,

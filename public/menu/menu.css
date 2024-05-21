@@ -11,6 +11,10 @@ header {
     color: #fff;
     text-align: center;
     padding: 20px 0;
+<<<<<<< HEAD
+=======
+    position: relative;
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
 }
 
 .back-button {
@@ -29,6 +33,13 @@ header {
     background-color: #750735; /* Darker blue on hover */
 }
 
+<<<<<<< HEAD
+=======
+.header-text {
+    z-index: 1;
+}
+
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
 
 
 .menu-section {
@@ -97,3 +108,22 @@ header {
     }
 }
 
+<<<<<<< HEAD
+=======
+.menu-section::-webkit-scrollbar {
+    width: 10px;
+}
+
+.menu-section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.menu-section::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.menu-section::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c

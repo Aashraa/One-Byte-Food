@@ -21,9 +21,33 @@ document.addEventListener('DOMContentLoaded', function () {
           }
       }
   });
+<<<<<<< HEAD
 });
 
 
+=======
+
+
+    // Check if user is logged in and display name in navigation bar
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+        const user = JSON.parse(loggedInUser);
+        userNameElement.textContent = `Welcome, ${user.name}!`;
+    }
+
+    // Check if a session token cookie exists
+    const sessionToken = document.cookie.includes('sessionToken');
+
+    // Get the signup/login link element
+    const signupLoginLink = document.getElementById('signup-login-link');
+
+    // If session token exists, change signup/login link to logout
+    if (sessionToken) {
+        signupLoginLink.innerHTML = '<a href="/logout">Logout</a>';
+    }
+});
+
+>>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
 // JavaScript for rotating buttons
 document.addEventListener('DOMContentLoaded', function () {
   const leftBtn = document.querySelector('.left-btn');

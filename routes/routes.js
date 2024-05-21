@@ -42,11 +42,11 @@ router.get("/", async (req, res) => {
 router.post('/add', async (req, res) => {
     try {
         const user = new User({
-            name: req.body.name,
-            email: req.body.email,
+            userName: req.body.name,
+            emailAddress: req.body.email,
             date: req.body.date,
             time: req.body.time,
-            tableNumber: req.body.tableNumber,
+            tableNumbers: req.body.tableNumber,
         });
         
         await user.save();
@@ -104,11 +104,11 @@ router.post("/update/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const updatedUser = await User.findByIdAndUpdate(id, {
-            name: req.body.name,
-            email: req.body.email,
+            userName: req.body.name,
+            emailAddress: req.body.email,
             date: req.body.date,
             time: req.body.time,
-            tableNumber: req.body.tableNumber,
+            tableNumbers: req.body.tableNumber,
         });
 
         if (!updatedUser) {
