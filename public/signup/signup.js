@@ -75,6 +75,7 @@ const handleSignup = async (event) => {
 
         if (response.ok) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             alert('Signup successful!');
             // Optionally, redirect the user to another page after successful signup
             window.location.href = '/homepage/homepage.html';
@@ -83,6 +84,11 @@ const handleSignup = async (event) => {
             // Optionally, redirect the user to another page after successful signup
             window.location.href = '/signup/signup.html';
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+            alert('Registered successful!');
+            // Optionally, redirect the user to another page after successful signup
+            window.location.href = '/signup/signup.html';
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
         } else {
             alert('Signup failed. Please try again later.');
         }
@@ -92,9 +98,8 @@ const handleSignup = async (event) => {
     }
 };
 
-// Add event listener to the signup form
-document.querySelector('.sign-up-form').addEventListener('submit', handleSignup);
-
+// Add event listener to the signin form
+document.querySelector('.sign-in-form').addEventListener('submit', handleLogin);
 const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -113,6 +118,7 @@ const handleLogin = async (event) => {
         });
 
         if (response.ok) {
+<<<<<<< HEAD
             alert('Login successful!');
 <<<<<<< HEAD
             // Login successful, redirect to homepage
@@ -123,12 +129,23 @@ const handleLogin = async (event) => {
             document.cookie = `sessionToken=${responseData.sessionToken};`;
             if (responseData.isAdmin) {
                 // If user is admin, redirect to index.ejs
+=======
+            const responseData = await response.json();
+            // Store session token in cookie
+            document.cookie = `sessionToken=${responseData.sessionToken};`;
+            // Check if user is admin
+            if (responseData.isAdmin) {
+                // If user is admin, redirect to admin dashboard
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
                 window.location.href = '/views/admin.ejs';
             } else {
                 // If user is not admin, redirect to homepage
                 window.location.href = '/homepage/homepage.html';
             }
+<<<<<<< HEAD
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
         } else {
             const responseData = await response.json();
             if (responseData.message === 'User not found') {
@@ -143,9 +160,6 @@ const handleLogin = async (event) => {
         }
     } catch (error) {
         console.error('Error during login:', error);
-        alert('User not found');
+        alert('Login in failed.');
     }
 };
-
-// Add event listener to the login form
-document.querySelector('.sign-in-form').addEventListener('submit', handleLogin);

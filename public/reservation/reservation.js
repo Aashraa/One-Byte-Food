@@ -14,11 +14,17 @@ const countElement = document.getElementById("count1");
 const totalElement = document.getElementById("total1");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // Disable seat selection interface initially
 seatContainer.style.pointerEvents = "none";
 
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+// Disable seat selection interface initially
+seatContainer.style.pointerEvents = "none";
+
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
 // Define seat prices
 const prices = {
     "For 2 to 4 Guests": 599,
@@ -44,10 +50,14 @@ socket.on("reservationUpdate", (data) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Mark already reserved seats in red
 =======
 // Function to mark already reserved seats in red
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+// Function to mark already reserved seats in red
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
 async function markReservedSeats() {
     try {
         const response = await fetch('/getReservedSeats');
@@ -105,13 +115,19 @@ function clearLocalStorage() {
     localStorage.removeItem("selectedSeats");
     console.log("Local storage cleared.");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
 
     // Clear UI selection
     document.querySelectorAll('.row .seat.selected').forEach(seat => {
         seat.classList.remove('selected');
     });
+<<<<<<< HEAD
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
 }
 
 // Populate the UI with data from local storage
@@ -131,7 +147,10 @@ function populateUI() {
 // Event delegation for seat selection
 seatContainer.addEventListener("click", (e) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
     // Check if the date has been selected
     const selectedDate = document.getElementById('date').value.trim();
     if (!selectedDate) {
@@ -140,7 +159,10 @@ seatContainer.addEventListener("click", (e) => {
     }
 
     // Continue with seat selection
+<<<<<<< HEAD
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
     if (e.target.classList.contains("seat") && !e.target.classList.contains("occupied")) {
         e.target.classList.toggle("selected");
         updateSelectedCount();
@@ -153,14 +175,54 @@ updateSelectedCount(); // Ensure count and total are updated on page load
 markReservedSeats(); // Mark reserved seats in red
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+// Listen for changes in the date input and fetch reserved seats for that date
+document.getElementById('date').addEventListener('change', async (e) => {
+    const date = e.target.value.trim();
+
+    // Clear local storage when date changes
+    clearLocalStorage();
+
+    // Enable seat selection interface
+    seatContainer.style.pointerEvents = "auto";
+
+    try {
+        const response = await fetch(`/getReservedSeats?date=${date}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch reserved seats');
+        }
+        const reservedSeats = await response.json();
+
+        // Clear previously marked reserved seats
+        document.querySelectorAll('.seat.occupied').forEach(seat => {
+            seat.classList.remove('occupied');
+        });
+
+        // Mark reserved seats for the selected date
+        reservedSeats.forEach(seatNumber => {
+            const seat = document.querySelector(`.seat[data-number="${seatNumber}"]`);
+            if (seat) {
+                seat.classList.add("occupied");
+            }
+        });
+
+        console.log('Reserved seats marked for', date, ':', reservedSeats);
+    } catch (error) {
+        console.error('Error fetching reserved seats:', error);
+    }
+});
+
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
 document.querySelector('#reserve-button').addEventListener('click', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const time = document.getElementById('time').value.trim();
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
 
+<<<<<<< HEAD
 =======
 // Listen for changes in the date input and fetch reserved seats for that date
 document.getElementById('date').addEventListener('change', async (e) => {
@@ -206,12 +268,17 @@ document.querySelector('#reserve-button').addEventListener('click', async (e) =>
     const time = document.getElementById('time').value.trim();
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
 
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
     if (!name || !email || !date || !time || !selectedSeats.length) {
         alert("Please fill out all fields and select at least one seat.");
         return;
     }
 
+<<<<<<< HEAD
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
     if (!selectedSeats.length) {
         console.error("No seats selected. Please select at least one seat.");
         return;
@@ -245,12 +312,18 @@ document.querySelector('#reserve-button').addEventListener('click', async (e) =>
         if (response.ok) {
             console.log("Data sent successfully");
 <<<<<<< HEAD
+<<<<<<< HEAD
             clearLocalStorage();
 =======
             alert("Table has been reserved successfully")
             clearLocalStorage();
             window.location.href = '/homepage/homepage.html';
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+            alert("Table has been reserved successfully")
+            clearLocalStorage();
+            window.location.href = '/homepage/homepage.html';
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
         } else {
             console.error("Failed to send data");
         }
@@ -260,7 +333,12 @@ document.querySelector('#reserve-button').addEventListener('click', async (e) =>
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // Listen for beforeunload event to clear local storage before page unload
 window.addEventListener('beforeunload', clearLocalStorage);
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+// Listen for beforeunload event to clear local storage before page unload
+window.addEventListener('beforeunload', clearLocalStorage);
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76

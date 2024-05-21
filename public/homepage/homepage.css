@@ -25,6 +25,15 @@ header {
     margin-right: auto;
 }
 
+.logo img {
+    width: 80px;
+    height: auto; 
+    display: block; 
+    margin: 0 auto;
+    border-radius: 50%; 
+    object-fit: cover
+}
+
 nav ul {
     list-style-type: none;
     display: flex;
@@ -44,6 +53,11 @@ nav ul li a:hover {
     color: #ffcc00;
 }
 
+#logout-button{
+    display: none;
+    color: red;
+}
+
 .dropdown {
     display: none;
     position: absolute;
@@ -56,6 +70,65 @@ nav ul li a:hover {
 }
 
 .has-dropdown:hover .dropdown {
+    display: block;
+}
+
+.has-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.dropdown-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.dropdown-menu ul li a:hover {
+    background-color: #ddd;
+}
+
+.dropdown-toggle:focus + .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu.show {
     display: block;
 }
 
@@ -119,12 +192,6 @@ nav ul li a:hover {
     }
 }
 
-
-
-
-
-
-
 main {
     background-image: url('images/new.jpg');
     background-size: cover;
@@ -176,14 +243,10 @@ main {
     text-transform: uppercase; /* Convert text to uppercase */
 }
 
-
 /* Specific color for One Byte text */
 .onebyte {
     color: rgb(223, 180, 108); /* Change the color of One Byte text */
 }
-
-
-
 
 /* Button styles */
 .buttons {
@@ -235,7 +298,6 @@ main {
     color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
-
 
 /* Responsive styles */
 @media (min-width: 768px) {
@@ -320,11 +382,6 @@ main {
     }
 }
 
-
-
-
-
-
 .chief-recommendation {
     display: flex;
     justify-content: space-between;
@@ -338,7 +395,6 @@ main {
     background-repeat: no-repeat;
     text-align: center;
 }
-
 
 /* Left section styles */
 .left-section {
@@ -373,7 +429,6 @@ main {
     overflow: hidden; /* Hide overflow content */
 }
 
-
 .left-section .details-btn:before {
     content: "";
     position: absolute;
@@ -393,8 +448,6 @@ main {
     transform: scale(1.1); /* Zoom in effect */
     box-shadow: 0 2px 0 0 #b94329; /* Box shadow for sliding effect */
 }
-
-
 
 /* Recommendation details styles */
 .recommendation-details {
@@ -473,7 +526,6 @@ main {
     }
 }
 
-
 /* Right section styles */
 .right-section {
     flex: 1;
@@ -506,8 +558,6 @@ main {
     font-size: 0.8rem;
 }
 
-
-
 .about-us {
     display: flex;
     align-items: center;
@@ -526,7 +576,6 @@ main {
     background-position: center; /* Center the background image */
     background-attachment: fixed; /* Fix the background image */
 }
-
 
 .about-us-img {
     flex: 1;
@@ -831,9 +880,6 @@ main {
     transform: scale(0.95); /* Add slight scale effect on button click */
 }
 
-
-
-
 .footer {
     background-color: #333;
     color: #fff;
@@ -905,8 +951,3 @@ main {
 .footer-copy a:hover {
     opacity: 1; /* Full opacity on hover */
 }
-
-
-
-
-

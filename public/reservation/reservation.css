@@ -36,11 +36,17 @@ nav {
 
 .back-button {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     position: absolute;
     top: 20px;
     left: 20px;
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+    position: absolute;
+    top: 20px;
+    left: 20px;
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
@@ -132,6 +138,7 @@ select {
 .subtitle {
     font-weight: 600;
     text-transform: uppercase;
+    text-align: center;
     color: #f7e2e7;
     font-size: 16px;
     padding: 10px;
@@ -199,12 +206,18 @@ select {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
 .seat.reserved {
     background-color: #bd0000;
 }
 
+<<<<<<< HEAD
 >>>>>>> 80b55acc82e467dd6eb157ce5475ab261793510c
+=======
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
 .seat:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2);

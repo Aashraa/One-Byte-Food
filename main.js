@@ -91,4 +91,8 @@ app.set("view engine", "ejs");
 // Routes prefix
 app.use("", require("./routes/routes"));
 
+<<<<<<< HEAD
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+=======
+app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+>>>>>>> 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76
