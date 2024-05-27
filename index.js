@@ -146,7 +146,7 @@ app.post('/logout', (req, res) => {
             return res.sendStatus(500);
         }
         res.clearCookie('sessionToken');
-        res.sendStatus(200);
+        res.redirect('/homepage/homepage.html');
     });
 });
 
@@ -244,6 +244,24 @@ app.get('/api/reservations/:userName', async (req, res) => {
     }
 });
 
+// Delete a reservation by username and reservation ID
+app.delete('/api/reservations/:username/:id', async (req, res) => {
+    const { username, id } = req.params;
+
+    try {
+        const result = await Data.findOneAndDelete({ _id: id, userName: username });
+
+        if (!result) {
+            return res.status(404).json({ error: 'Reservation not found' });
+        }
+
+        res.status(200).json({ message: 'Reservation deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting reservation:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 app.get("/admin", async (req, res) => {
     try {
         const users = await Reservations.find();
@@ -272,6 +290,7 @@ app.post('/add', async (req, res) => {
             emailAddress: req.body.email,
             date: req.body.date,
             time: req.body.time,
+            message: req.body.message,
             tableNumbers: req.body.tableNumber,
         });
         
@@ -283,7 +302,7 @@ app.post('/add', async (req, res) => {
        
         
         // Redirect to the home page after setting the message
-        res.redirect("/");
+        res.redirect("admin");
     } catch (error) {
         res.status(500).json({ message: error.message, type: 'danger' });
     }

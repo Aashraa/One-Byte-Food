@@ -177,6 +177,7 @@ document.querySelector('#reserve-button').addEventListener('click', async (e) =>
     const email = document.getElementById('email').value.trim();
     const date = document.getElementById('date').value.trim();
     const time = document.getElementById('time').value.trim();
+    const message = document.getElementById('message').value.trim();
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
 
     if (!name || !email || !date || !time || !selectedSeats.length) {
@@ -195,6 +196,7 @@ document.querySelector('#reserve-button').addEventListener('click', async (e) =>
     console.log("Email:", email);
     console.log("Date:", date);
     console.log("Time:", time);
+    console.log("Message:", message);
     console.log("Table Numbers:", tableNumbers);
 
     const data = {
@@ -202,6 +204,7 @@ document.querySelector('#reserve-button').addEventListener('click', async (e) =>
         emailAddress: email,
         date: date,
         time: time,
+        message: message,
         tableNumbers: tableNumbers
     };
 

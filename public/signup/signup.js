@@ -48,9 +48,9 @@ const handleSignup = async (event) => {
     event.preventDefault();
 
     // Get form data
-    const username = document.querySelector('.sign-up-form input[name="username"]').value;
-    const email = document.querySelector('.sign-up-form input[name="email"]').value;
-    const password = document.querySelector('.sign-up-form input[name="password"]').value;
+    const username = document.querySelector('.sign-up-form input[name="username"]').value.trim();
+    const email = document.querySelector('.sign-up-form input[name="email"]').value.trim();
+    const password = document.querySelector('.sign-up-form input[name="password"]').value.trim();
 
     // Validate email and password
     if (!validateEmail(email)) {

@@ -32,6 +32,24 @@ const fetchReservations = async (userName) => {
     }
 };
 
+// Function to delete a reservation
+const deleteReservation = async (userName, reservationId) => {
+    try {
+        const response = await fetch(`/api/reservations/${userName}/${reservationId}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        }
+
+        console.log(`Reservation ${reservationId} deleted successfully`);
+    } catch (error) {
+        console.error('Error deleting reservation:', error);
+    }
+};
+
 const updateReservationsTable = (reservations) => {
     const tbody = document.querySelector('#reservations-table tbody');
     tbody.innerHTML = ''; // Clear existing rows
@@ -79,11 +97,16 @@ const updateReservationsTable = (reservations) => {
         cancelButton.classList.add('cancel-btn');
         cancelButton.textContent = 'Cancel';
         cancelButton.addEventListener('click', () => {
-            console.log(`Reservation for ${reservation.userName} cancelled`);
+            deleteReservation(reservation.userName, reservation._id).then(() => {
+                fetchReservations(reservation.userName).then(reservations => {
+                    updateReservationsTable(reservations);
+                });
+            });
         });
         actionsCell.appendChild(cancelButton);
 
         tbody.appendChild(row);
+
     });
 
     console.log('Table updated with reservations'); // Log after updating the table

@@ -4,6 +4,7 @@ const dataSchema = new mongoose.Schema({
     emailAddress: String,
     date: Date,
     time: String,
+    message: String,
     tableNumbers: Array
 });
 

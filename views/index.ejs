@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4ee94d9;
+            background-color: #3f3f3cd9;
             color: #333;
             margin: 0;
             padding: 0;
@@ -27,7 +27,7 @@
 
         .container {
             margin-top: 20px;
-            background-color: #fffab0;
+            background-color: #636363;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -173,6 +173,7 @@
                         <th>Email</th>
                         <th>Date</th>
                         <th>Time</th>
+                        <th>Message</th>
                         <th>Table Number</th>
                         <th>Actions</th>
                     </tr>
@@ -185,6 +186,7 @@
                         <td><%= row.emailAddress %></td>
                         <td><%= row.date %></td>
                         <td><%= row.time %></td>
+                        <td><%= row.message %></td>
                         <td><%= row.tableNumbers %></td>
                         <td>
                             <!-- Delete button -->

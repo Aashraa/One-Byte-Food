@@ -1,0 +1,114 @@
+[33mcommit 29d0ff2dd5f2c68f5cac404ff119c8ea8281eb76[m[33m ([m[1;36mHEAD -> [m[1;32mGunjanTamang[m[33m, [m[1;31morigin/GunjanTamang[m[33m)[m
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Fri May 17 10:26:47 2024 +0545
+
+    User reservation view
+
+[33mcommit 1c170e2c2d69ea20b58e56db5cffd83f9d9343d8[m
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Fri May 17 00:52:27 2024 +0545
+
+    Admin joined and username in nav bar
+
+[33mcommit effc369eea33edb07e3fbce2b519c29e5515dd5c[m
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Tue May 14 00:39:12 2024 +0545
+
+    Session completed
+
+[33mcommit 470810b6868a3b467763770069ef6a337e1b6bac[m
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Sun May 12 21:27:03 2024 +0545
+
+    Login to admin dashboard
+
+[33mcommit d1d17825fe8856b3f5c4a8993e4f574cdaaf619b[m
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Sun May 12 14:19:22 2024 +0545
+
+    Tables reservation by date
+
+[33mcommit 687114b38ebec913ee7c87dc797fdee85a51c1e9[m
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Fri May 10 02:55:11 2024 +0545
+
+    Reservation shown by date and trying to integrate main.js to index.js
+
+[33mcommit fabb495cf08d0a14b8ee4c57515bc5492661bdb5[m
+Merge: a5359f9 0c1cf75
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Tue May 7 16:56:45 2024 +0545
+
+    Merge branch 'GunjanTamang' of https://github.com/Aashraa/One-Byte-Food into GunjanTamang
+
+[33mcommit a5359f9cce8fd7cf194cdf020c44bdf13ae3f76f[m
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Tue May 7 11:29:40 2024 +0545
+
+    Admin also added
+
+[33mcommit 0c1cf75b33b31cbdea4ab415a04a8dc4ee1d320e[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Tue May 7 11:27:34 2024 +0545
+
+    Delete public/payment directory
+
+[33mcommit e0d1f694d2f38a47afb63bb22931865e6a64defb[m
+Author: ApoozGunja <syangtangunjan@gmail.com>
+Date:   Tue May 7 06:31:41 2024 +0545
+
+    table reservation and some minor changes in in front end
+
+[33mcommit c12868d477523a7c681288115fd40052bf0a1dfe[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Tue May 7 05:52:46 2024 +0545
+
+    Delete userdetail.html
+
+[33mcommit 362e5d09580cd3ee621520d6a5bf70504d9a9373[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Tue May 7 05:52:30 2024 +0545
+
+    Delete userdetail.css
+
+[33mcommit 367c6cb5bafb7df8c8da3b98a44958fcdceec358[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Tue May 7 05:52:16 2024 +0545
+
+    Delete reservation.js
+
+[33mcommit efeece987e2b4c53d87d7f2a527945f8aedd948b[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Tue May 7 05:51:58 2024 +0545
+
+    Delete reservation.html
+
+[33mcommit a6fcaaf5399a058d9e3e42d127e748fd58b8fae7[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Tue May 7 05:51:34 2024 +0545
+
+    Delete reservation.css
+
+[33mcommit b993eb68b9e46b818e2e0b509894c1faf18a56f4[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Tue May 7 01:19:07 2024 +0545
+
+    table visualization completed
+
+[33mcommit 69c56162ec2328192036539dee48620c473967ae[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Tue Apr 16 10:10:49 2024 +0545
+
+    Backend and Database connection
+
+[33mcommit 673c060fa327af29205e70280207737c9a57e144[m
+Author: ApoozGunja <127733170+ApoozGunja@users.noreply.github.com>
+Date:   Sun Apr 7 21:40:27 2024 +0545
+
+    Add files via upload
+
+[33mcommit 93e85dbb55418995d11930f68d2e55a31cd397c3[m
+Author: Aashra Dangol <np03cs4a220218@heraldcollege.edu.np>
+Date:   Fri Mar 22 10:08:05 2024 +0545
+
+    initial commit

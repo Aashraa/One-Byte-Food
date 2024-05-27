@@ -121,19 +121,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Countdown function
 function countdown() {
-  const eventDate = new Date('2024-05-30 18:00:00').getTime(); // Change to your event date and time
-  const now = new Date().getTime();
-  const distance = eventDate - now;
+    const eventDate = new Date('2024-05-30 18:00:00').getTime(); // Change to your event date and time
+    const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if (distance <= 0) {
+            clearInterval(countdownInterval);
+            document.querySelector('.days').innerText = 0;
+            document.querySelector('.hours').innerText = 0;
+            document.querySelector('.minutes').innerText = 0;
+            document.querySelector('.seconds').innerText = 0;
+            return;
+        }
 
-  document.querySelector('.days').innerText = days;
-  document.querySelector('.hours').innerText = hours;
-  document.querySelector('.minutes').innerText = minutes;
-  document.querySelector('.seconds').innerText = seconds;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.querySelector('.days').innerText = days;
+        document.querySelector('.hours').innerText = hours;
+        document.querySelector('.minutes').innerText = minutes;
+        document.querySelector('.seconds').innerText = seconds;
+    }, 1000);
 }
 
 // Update countdown every second
